@@ -1,0 +1,18 @@
+CREATE DATABASE task_web;
+USE task_web;
+CREATE TABLE users(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(32) NOT NULL,
+    PASSWORD VARCHAR(255) NOT NULL,
+    email     VARCHAR(255) NOT NULL,
+    administrator BOOL DEFAULT FALSE
+);
+CREATE TABLE tasks(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_created INT NOT NULL,
+    created_date DATETIME NOT NULL,
+    deadline_date DATETIME,
+    title VARCHAR(255) NOT NULL,
+    DESCRIPTION VARCHAR(255),
+    FOREIGN KEY (user_created) REFERENCES users(id) 
+);

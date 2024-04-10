@@ -1,0 +1,18 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Lai CSS imports točna strādātu..
+
+# This condition checks if the requested
+
+# URL does not point to an existing file (!-f).
+
+# If the condition is met (i.e., the requested
+
+# URL is not a file), the following rewrite rule
+
+# will be applied
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [QSA,L]
