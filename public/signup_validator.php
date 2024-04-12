@@ -2,18 +2,19 @@
 
 class Validator
 {
-        public $email;
-        public $username;
-        public $password;
-        public $passwordConfirmation;
+    public $email;
+    public $username;
+    public $password;
+    public $passwordConfirmation;
 
-        function __construct($email, $username, $password, $passwordConfirmation) {
-            $this->email = $email;
-            $this->username = $username;
-            $this->password = $password;
-            $this->passwordConfirmation = $passwordConfirmation;
-        }
-        
+    function __construct($email, $username, $password, $passwordConfirmation)
+    {
+        $this->email = $email;
+        $this->username = trim($username);
+        $this->password = $password;
+        $this->passwordConfirmation = $passwordConfirmation;
+    }
+
     public static function validateEmail($email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -22,18 +23,25 @@ class Validator
         return null;
     }
 
-    public static function validateDatetime($datetimeString, $format = 'Y-m-d H:i:s') {
+    public static function validateDatetime($datetimeString, $format = 'Y-m-d H:i:s')
+    {
         $dateTime = DateTime::createFromFormat($format, $datetimeString);
         if (!$dateTime || $dateTime->format($format) !== $datetimeString) {
-          return "Invalid datetime format. Expected format: " . $format;
+            return "Invalid datetime format. Expected format: " . $format;
         }
         return null;
-  }
-    
+    }
+    public static function string(string $value, int $min = 0, int $max = INF)
+    {
+        $value = trim($value);
+        return strlen($value) <= $min || strlen($value) >= $max;
+    }
+
+
     public static function validateUsername($username)
     {
         $usernameRegex = "/^[a-zA-Z0-9_]+$/";
-        if (!preg_match($usernameRegex, $username) || strlen($username) < 4 || strlen($username) > 20) {
+        if (!preg_match($usernameRegex, $username) || strlen($username)<4 || strlen($username)>20) {
             return "Username must be 4-20 characters and contain only letters, numbers, and underscores.";
         }
         return null;
@@ -74,10 +82,6 @@ class Validator
         $error = self::validatePasswordConfirmation($password, $passwordConfirmation);
         if ($error) {
             $errors[] = $error;
-        }
-        $error = self::validateDatetime($datetimeString, $datetimeFormat);
-        if ($error) {
-          $errors[] = $error;
         }
         return $errors;
     }

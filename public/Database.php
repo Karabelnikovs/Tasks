@@ -23,7 +23,7 @@ class Database{
         $query->execute($params);
 
         //sanemt datus no sql uz php
-        return $query->fetchAll();
+        return $query;
     }
     
 }
