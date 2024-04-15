@@ -20,8 +20,8 @@ t.created_date,
 t.deadline_date,
 t.DESCRIPTION
 FROM tasks t 
-INNER JOIN users u ON t.user_created = u.id ";
-$params = [];
+INNER JOIN users u ON t.user_created = u.id WHERE u.id = ?";
+$params = [$_SESSION['user_id']];
 
 if (isset($_GET["title"]) && $_GET["title"] != "") {
     $query_string .= " WHERE title=:title";
