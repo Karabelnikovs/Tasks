@@ -1,6 +1,7 @@
 <?php
 //todo: implement edit feature for tasks
 session_start();
+date_default_timezone_set('Europe/Riga');
 
 
 if (!isset($_SESSION['user_id'])) {

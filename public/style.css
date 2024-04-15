@@ -1,32 +1,22 @@
-*{
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
 
 #container{
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
     background-color: #ffffff;
     overflow: hidden;
-
+    width: 100vw;
+    height: 50vh;
 }
 
 .card{
+    display: flex;
     transition: all 0.2s;
     width: 30%;
-    height: 20%;
+    padding: 10px;
+    margin: 20px;
+    height: fit-content;
     border: 2px solid #000;
     border-radius: 10px;
     background-color: #fff;

@@ -8,8 +8,8 @@ top: 0;">Add task</a></p>
     <p><a href="login" class="btn btn-outline-success">Log in</a></p>
 <?php } ?>
 
-
-
+<script defer src="public/cards.js"></script>
+<link rel="stylesheet" href="public/style.css">
 
 <div class="content">
     <h1>Darbi</h1><br>
@@ -25,8 +25,10 @@ top: 0;">Add task</a></p>
     </form>
 
 
-    <h2>Darbi:</h1>
-        <div class="table-responsive">
+    <h2>Darbi:</h2>
+
+    <div id="container"></div>
+        <!-- <div class="table-responsive">
             <table class="table table-bordered" id="responsive-table">
                 <thead>
                     <tr>
@@ -53,10 +55,12 @@ top: 0;">Add task</a></p>
                             </td>
 
                             <td>
+                                
                                 <?= $task["created_date"] ?>
                             </td>
+
                             <td>
-                                <p style="color: <?= ($task["created_date"] >= $task["deadline_date"]) ? 'red' : 'black'; ?>"><?= $task["deadline_date"] ?></p>
+                                <p style="color: <?= (date("Y-m-d H:i:s",time()) >= $task["deadline_date"]) ? 'red' : 'black'; ?>"><?= $task["deadline_date"] ?></p>
                             </td>
                             <td>
                                 <?php if (
@@ -69,7 +73,7 @@ top: 0;">Add task</a></p>
                                         <button type="submit" class="<?=
                                             $_SESSION["user_id"] == $task["user_created"]
                                             ? "btn btn-success" : "btn" ?>">Ir</button>
-                                    </form>
+                                    </form> 
                                 <?php elseif (
                                     isset($_SESSION["user_id"])
                                     && $task["done"] == 0
@@ -108,7 +112,7 @@ top: 0;">Add task</a></p>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 </div>
 </body>
 

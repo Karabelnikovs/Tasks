@@ -3,6 +3,7 @@
 return [
   "/" =>              "app/controllers/task_handle/tasks_view.php",
   "/tasks" =>         "app/controllers/task_handle/tasks_view.php",
+  "/parse" =>         "app/controllers/task_handle/tasks_parse.php",
   "/create" =>        "app/controllers/task_handle/tasks_create.php",
   "/delete" =>        "app/controllers/task_handle/tasks_delete.php",
   "/signup-succes" => "app/controllers/user_handle/signup_succes.php",
