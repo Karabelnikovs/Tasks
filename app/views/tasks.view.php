@@ -56,7 +56,7 @@ top: 0;">Add task</a></p>
                                 <?= $task["created_date"] ?>
                             </td>
                             <td>
-                                <?= $task["deadline_date"] ?>
+                                <p style="color: <?= ($task["created_date"] >= $task["deadline_date"]) ? 'red' : 'black'; ?>"><?= $task["deadline_date"] ?></p>
                             </td>
                             <td>
                                 <?php if (

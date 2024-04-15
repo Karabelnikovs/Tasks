@@ -1,5 +1,5 @@
 <?php
-//todo: implement tasks create
+
 session_start();
 
 
@@ -30,7 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!Validator::validateDatetime(strtotime($_POST["deadline_date"]))) {
         $errors["deadline_date"] = "Deadline date must be a valid date.";
     }
-
+    if(time() >= strtotime($_POST["deadline_date"])) {
+        $errors["deadline_date"] = "Deadline date cannot be in the past or this instant.";
+    }
     if (empty($errors)) {
         $params = [
             $_POST["title"],
