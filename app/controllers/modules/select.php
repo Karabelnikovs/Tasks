@@ -9,11 +9,8 @@ class Select{
         $this->db = $db;
     }
 
-$query_string = "SELECT * FROM tasks";
-$params=[];
+    public $query_string = "SELECT * FROM tasks";
+    public $params=[];
 
-$tasks = $db->execute($query_string, $params)->fetchAll();
-
-return $tasks;
-
+    public$tasks = $db->execute($this->query_string, $this->params)->fetchAll();
 }

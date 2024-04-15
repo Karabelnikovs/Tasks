@@ -88,13 +88,13 @@ top: 0;">Add task</a></p>
                             <td>
                                 <?php if (isset($_SESSION["user_id"])) { ?>
                                     <form method="POST" action="delete">
-                                        <input type="hidden" name="delete" value="<?= $index ?>">
+                                        <input type="hidden" name="delete" value="<?= $task["id"] ?>">
                                         <button class="<?=
                                             $_SESSION["user_id"] == $task["user_created"]
                                             ? "btn btn-outline-danger" : "btn" ?>" type="submit">Izdzēst</button>
                                     </form>
                                     <form method="POST">
-                                        <input type="hidden" name="edit" value="<?= $index ?>">
+                                        <input type="hidden" name="edit" value="<?= $task["id"] ?>">
                                         <button class="<?=
                                             $_SESSION["user_id"] == $task["user_created"]
                                             ? "btn btn-outline-info" : "btn" ?>" type="submit">Rediģēt</button>
