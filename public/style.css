@@ -15,14 +15,6 @@
 .card {
     display: flex;
     transition: all 0.2s;
-<<<<<<< HEAD
-    font-size: small;
-    width: fit-content  ;
-    height: fit-content;
-=======
-    width: 30%;
-    max-width: 300px; 
->>>>>>> 273d0fb9dc2d055da7a96896a0244d8d5059282e
     padding: 10px;
     margin: 20px;
     border: 2px solid #000;
