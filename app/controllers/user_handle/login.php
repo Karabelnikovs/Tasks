@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 session_regenerate_id();
                 
                 $_SESSION["user_id"] = $user["id"];
-                
+                setcookie("user_id", $_SESSION["user_id"]);
                 header("Location: tasks");
                 exit();
             }
