@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!empty($user)){
         $user = $user[0];
         if ($user) {
-        
+        // pswrd: 1234Aa!1
             if (password_verify($_POST["password"], $user["password_hash"])) {
                 
                 session_start();
