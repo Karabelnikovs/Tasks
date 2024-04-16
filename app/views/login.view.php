@@ -8,15 +8,15 @@
         <div class="self-start hidden lg:flex flex-col  text-gray-300">
 
             <h1 class="my-3 font-semibold text-4xl">Welcome back</h1>
-            <p class="pr-3 text-sm opacity-75">Lorem ipsum is placeholder text commonly used in the graphic, print,
-                and publishing industries for previewing layouts and visual mockups</p>
+            <p class="pr-3 text-sm opacity-75">Jomajo te mes uzrakstisim baigi zajebis tekstu ta lai ienak un uzreiz
+                saprot ka nihuja sev laba saite</p>
         </div>
     </div>
     <div class="flex justify-center self-center  z-10">
         <div class="p-12 bg-white mx-auto rounded-3xl w-96 ">
             <div class="mb-7">
                 <h3 class="font-semibold text-2xl text-gray-800">Login </h3>
-                <p class="text-gray-400">Don'thave an account? <a href="signup"
+                <p class="text-gray-400">Don't have an account? <a href="signup"
                         class="text-sm text-purple-700 hover:text-purple-700">Sign Up</a></p><br>
                 <div class="text-sm ml-auto">
                 </div>

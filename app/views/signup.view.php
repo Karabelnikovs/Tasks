@@ -7,8 +7,10 @@
     <div class="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
         <div class="self-start hidden lg:flex flex-col  text-gray-300">
 
-            <h1 class="my-3 font-semibold text-4xl">Welcome!</h1>
-            
+            <h1 class="my-3 font-semibold text-4xl">Welcome</h1>
+            <p class="pr-3 text-sm opacity-75">
+                Jomajo te mes uzrakstisim baigi zajebis tekstu ta lai ienak un uzreiz
+                saprot ka nihuja sev laba saite</p>
         </div>
     </div>
 
@@ -18,9 +20,11 @@
             <div class="mb-7">
                 <h3 class="font-semibold text-2xl text-gray-800 flex items-center justify-between ">Signup</h3>
                 <div class="text-sm ml-auto">
-                    <a href="login" class="text-purple-700 hover:text-purple-600">
-                        Back
-                    </a>
+                    <p class="text-gray-400">Already have an account?
+                        <a href="login" class="text-purple-700 hover:text-purple-600">
+                            Login
+                        </a>
+                    </p>
                 </div>
             </div>
 
