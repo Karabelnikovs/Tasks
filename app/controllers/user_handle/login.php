@@ -16,12 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $params=[":email"=>$_POST["email"]];
     
     $user = $db->execute($query_string, $params)->fetchAll();
-    
+       
     if(!empty($user)){
         $user = $user[0];
         if ($user) {
         // pswrd: 1234Aa!1
-            if (password_verify($_POST["password"], $user["password_hash"])) {
+            if (password_verify($_POST["password"], $user["PASSWORD"])) {
                 
                 session_start();
                 
