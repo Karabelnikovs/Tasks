@@ -1,14 +1,39 @@
 const container = document.getElementById("container");
-// INTEGRATE THIS BROTHERRR
 let id = 0;
-
 let cardsElements = [];
 
 
 
+/**
+ * Sends a post request to the server, clears and gets new cards from the said server.
+ */
+async function taskDone(index){
+  id = index;  
+  let form = new FormData();
+  form.append("check", id);
+  await fetch("check", {
+      method: "POST",
+      body: form
+    });
+    clearCards();
+    getCards();
+}
 
-function fixPHPDone(donedata){
-  return  donedata ? "done" : "notdone";
+/**
+ * Clears all cards from the page.
+ */
+function clearCards() {
+  cardsElements = [];
+}
+
+/**
+ * Returns the adjusted text for the PHP done status.
+ *
+ * @param {boolean} donedata The PHP done status.
+ * @returns {string} The adjusted text for the PHP done status.
+ */
+function fixPHPDone(donedata) {
+  return donedata? "done" : "notdone";
 }
 
 
@@ -36,7 +61,7 @@ function formatDeadlineDate(deadlineDate) {
   const color = isOverdue ? "red" : "black";
 
   const formattedDate = deadline.toLocaleString(); // Adjust formatting as needed
-  return `<p style="color: ${color}">${formattedDate}</p>`;
+  return `<div style="color: ${color}">${formattedDate}</div>`;
 }
 
 /**
@@ -80,18 +105,15 @@ async function getCards() {
     const data = await fetchData(); // Fetch data from server
     data.forEach((card, index) => {
       let cardPush = document.createElement("div");
+      console.log(index)
       cardPush.classList.add("card");
       cardPush.id = index;
-      cardPush.innerHTML += `<h2>${card.title}</h2>`;
-      cardPush.innerHTML += `<h2>${card.username}</h2>`;
-      cardPush.innerHTML += `<h2>${card.created_date}</h2>`;
-      cardPush.innerHTML += `<h2>${formatDeadlineDate(card.deadline_date)}</h2>`;
-      cardPush.innerHTML += `<h2>${card.DESCRIPTION}</h2>`;
-      cardPush.innerHTML += `
-      <form method="POST">
-          <input type="hidden" name="${fixPHPDone(card.done)}" value="${index}" class="form-control">
-          <button type="submit" ${formatDoneButton(card.done)} </button>
-      </form>`;
+      cardPush.innerHTML += `<div class="title">Title: ${card.title}</div>`;
+      cardPush.innerHTML += `<div class="user">User: ${card.username}</div>`;
+      cardPush.innerHTML += `<div class="created">Created: ${card.created_date}</div>`;
+      cardPush.innerHTML += `<div class="deadline">Deadline: ${formatDeadlineDate(card.deadline_date)}</div>`;
+      cardPush.innerHTML += `<div class="description">Description: ${card.DESCRIPTION}</div>`;
+      cardPush.innerHTML += `<button onclick="taskDone(${index})" ${formatDoneButton(card.done)}</button>`;
       cardPush.addEventListener("click", () => {
         if (index != id) {
           id = index;
@@ -101,17 +123,15 @@ async function getCards() {
       let cardPushArr = { card: cardPush };
       cardsElements.push(cardPushArr);
     });
-    updateCards(); // Update cards after data is fetched
+    updateCards();
   } catch (error) {
     console.error("Error fetching data:", error);
-    // Handle error appropriately (e.g., display error message)
   }
 }
 
 getCards();
 /**
  * Updates the cards displayed in the container.
- * @returns Nothing.
  */
 function updateCards() {
   const length = cardsElements.length;
@@ -119,11 +139,13 @@ function updateCards() {
   cardsElements.forEach((cardElement) => {
     cardElement.card.style.zIndex = "0";
     cardElement.card.style.scale = "0.5";
+    cardElement.card.style.userSelect = "none";
     cardElement.card.style.filter = "blur(5px)";
   });
   cardsElements[id].card.style.zIndex = "1";
   cardsElements[id].card.style.scale = "1.5";
   cardsElements[id].card.style.filter = "blur(0px)";
+  cardsElements[id].card.style.userSelect = "auto";
 
   if (length > 0) {
     if (length > 2) {
@@ -140,7 +162,7 @@ function updateCards() {
         container.append(cardsElements[id].card);
         container.append(cardsElements[id + 1].card);
       }
-    } else {
+    } else if (length === 2) {
       if (id === 0) {
         container.append(cardsElements[1].card);
         container.append(cardsElements[0].card);
@@ -148,6 +170,8 @@ function updateCards() {
         container.append(cardsElements[0].card);
         container.append(cardsElements[1].card);
       }
+    }else{
+      container.append(cardsElements[0].card);
     }
   } else {
     container.innerHTML = "No cards to show";
@@ -156,7 +180,6 @@ function updateCards() {
 
 /**
  * Switches index of the current task and updates the cards displayed in the container.
- * @returns Nothing.
  */
 function nextCard() {
   id++;
@@ -168,7 +191,6 @@ function nextCard() {
 
 /**
  * Switches index of the current task and updates the cards displayed in the container.
- * @returns Nothing.
  */
 function prevCard() {
   id--;
