@@ -11,17 +11,24 @@
     height: 50vh;
 }
 
-.card{
+
+.card {
     display: flex;
     transition: all 0.2s;
+<<<<<<< HEAD
     font-size: small;
     width: fit-content  ;
     height: fit-content;
+=======
+    width: 30%;
+    max-width: 300px; 
+>>>>>>> 273d0fb9dc2d055da7a96896a0244d8d5059282e
     padding: 10px;
     margin: 20px;
     border: 2px solid #000;
     border-radius: 10px;
     background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .card:hover{
