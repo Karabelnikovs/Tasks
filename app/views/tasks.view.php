@@ -1,9 +1,8 @@
 <?php require "components/head.php" ?>
 <?php if (isset($_SESSION["user_id"])) { ?>
     <p><a href="logout" class="btn btn-outline-danger">Log out</a></p>
-    <p><a href="create" class="btn btn-outline-info" style="right: 0;
-position: absolute;
-top: 0;">Add task</a></p>
+    <p><a href="create" class="btn btn-outline-info" style="position: absolute; top: 20px; right: 20px;">Add task</a></p>
+
 <?php } else { ?>
     <p><a href="login" class="btn btn-outline-success">Log in</a></p>
 <?php } ?>
