@@ -10,16 +10,19 @@
     height: 50vh;
 }
 
-.card{
+
+.card {
     display: flex;
     transition: all 0.2s;
     width: 30%;
+    max-width: 300px; 
     padding: 10px;
     margin: 20px;
     height: fit-content;
     border: 2px solid #000;
     border-radius: 10px;
     background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .card:hover{
