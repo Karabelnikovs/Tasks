@@ -17,9 +17,11 @@ class Validator
 
     public static function validateEmail($email)
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (empty($email)) {
+            return "Email is required!";
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return "Invalid email format.";
-        }else{
+        } else {
             return null;
         }
     }
@@ -27,9 +29,11 @@ class Validator
     public static function validateDatetime($datetimeString, $format = 'Y-m-d H:i:s')
     {
         $dateTime = DateTime::createFromFormat($format, $datetimeString);
-        if (!$dateTime || $dateTime->format($format) !== $datetimeString) {
+        if (empty($datetimeString)) {
+            return "Date is required!";
+        } else if (!$dateTime || $dateTime->format($format) !== $datetimeString) {
             return "Invalid datetime format. Expected format: " . $format;
-        }else{
+        } else {
             return null;
         }
     }
@@ -43,9 +47,11 @@ class Validator
     public static function validateUsername($username)
     {
         $usernameRegex = "/^[a-zA-Z0-9_]+$/";
-        if (!preg_match($usernameRegex, $username) || strlen($username)<4 || strlen($username)>20) {
+        if (empty($username)) {
+            return "Username is required!";
+        } else if (!preg_match($usernameRegex, $username) || strlen($username) < 4 || strlen($username) > 20) {
             return "Username must be 4-20 characters and contain only letters, numbers, and underscores.";
-        }else{
+        } else {
             return null;
         }
     }
@@ -53,18 +59,23 @@ class Validator
     public static function validatePassword($password)
     {
         $passwordRegex = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@$%^&*])[a-zA-Z0-9.!@$%^&*]{8,}$/";
-        if (!preg_match($passwordRegex, $password)) {
+        if (empty($password)) {
+            return "Password is required!";
+        } else if (!preg_match($passwordRegex, $password)) {
             return "Password must be at least 8 characters and include at least one uppercase letter, lowercase letter, number, and special character.";
-        }else{
+        } else {
             return null;
         }
     }
 
     public static function validatePasswordConfirmation($password, $passwordConfirmation)
-    {
-        if ($password !== $passwordConfirmation) {
+    {   
+        if (empty($password)) {
+            return "Password repeat is required!";
+        }
+        else if ($password !== $passwordConfirmation) {
             return "Password confirmation does not match password.";
-        }else{
+        } else {
             return null;
         }
     }

@@ -1,11 +1,11 @@
-##TASK WEB PROJECT
+## TASK WEB PROJECT
 fully based on php
 
 
-#SETUP
+# SETUP
 clone the repo and start your apache with mysql servers
 
-##CONTRIBUTIONS
+## CONTRIBUTIONS
 none taken
 
 goodbye

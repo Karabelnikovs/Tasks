@@ -11,11 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db = new Database($config["config"]);
     $errors = [];
 
-
-
     $query_string = "SELECT * FROM users WHERE email = :email";
-    $params = [":email" => $_POST["email"]];
 
+
+    $params = [":email" => $_POST["email"]];
     $user = $db->execute($query_string, $params)->fetchAll();
 
     if (!empty($user)) {
@@ -31,13 +30,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie("user_id", $_SESSION["user_id"]);
                 header("Location: tasks");
                 exit();
-            }else{
+            } else {
                 $errors["password"] = "Password is incorrect";
             }
         }
         $is_invalid = true;
-    }else{
-        $errors["email"] = "User does not exist";
+    } else {
+        if (!isset($_POST["email"]) || empty($_POST["email"])) {
+            $errors["email"] = "Email is required!";
+        }else{
+            $errors["email"] = "User does not exist";
+        }
+        if (!isset($_POST["password"]) || empty($_POST["password"])) {
+            $errors["password"] = "Password is required!";
+        }
     }
 
 

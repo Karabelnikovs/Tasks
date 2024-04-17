@@ -3,8 +3,7 @@
 require "public/signup_validator.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $errors = new Validator($_POST["username"], $_POST["email"], $_POST["password"], $_POST["password_confirmation"]);
-    $errors = $errors->validate( $_POST["email"], $_POST["username"], $_POST["password"], $_POST["password_confirmation"]);
+    $errors = Validator::validate( $_POST["email"], $_POST["username"], $_POST["password"], $_POST["password_confirmation"]);
 
     if (empty($errors)) {
         $config = require "public/config.php";
