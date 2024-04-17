@@ -11,20 +11,20 @@
 <link rel="stylesheet" href="public/style.css">
 
 <div class="content">
-    <h1>Darbi</h1><br>
+    <h1 style="font-size: 25px; ">Darbi</h1><br>
     <form>
-        <h2>Atrast task pēc nosaukuma</h2>
+        <h2 style="position: absolute; top: 78px; right: 680px">Atrast task pēc nosaukuma</h2>
         <div class="input-group mb-3">
             <input name="title" type="text" value='<?= ($_GET["title"] ?? '') ?>' class="form-control"
                 placeholder="Nosaukums">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary"><a><span>Meklēt</span></a></button>
+                <button class="btn btn-outline-secondary"><a><span>Meklēt </style></span></a></button>
             </div>
         </div>
     </form>
 
 
-    <h2>Darbi:</h2>
+    <h2 style="font-size: 30px;">Darbi:</h2>
 
     <div id="container"></div>
         <!-- <div class="table-responsive">
