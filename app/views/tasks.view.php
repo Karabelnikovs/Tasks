@@ -22,7 +22,7 @@
             <input name="title" type="text" value='<?= ($_GET["title"] ?? '') ?>' class="form-control"
                 placeholder="Nosaukums">
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary"><a><span>Meklēt</span></a></button>
+            <button class="btn btn-outline-secondary" style="background-color: white; color: black;" onmouseover="this.style.color='black'" onmouseout="this.style.color='';"><a><span>Meklēt </span></a></button>
             </div>
         </div>
     </form>
