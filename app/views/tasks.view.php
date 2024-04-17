@@ -4,7 +4,8 @@
 
 </div>
 <?php if (isset($_SESSION["user_id"])) { ?>
-    <a href="logout" class="btn btn-outline-danger">Log out</a>
+    <a href="logout" class="btn btn-outline-danger"
+    style="position: absolute; top: 20px; left: 20px;">Log out</a>
     <a href="create" class="btn btn-outline-info" style="position: absolute; top: 20px; right: 20px;">Add task</a>
 
 <?php } else { ?>
