@@ -8,24 +8,10 @@
     overflow: hidden;
     font-size: xx-small;
     width: 100vw;
-    height: 50vh;
+    height: 70vh;
 }
 
 
-.card {
-    perspective: 10px;
-    display: flex;
-    transition: all 0.2s;
-    font-size: small;
-    width: fit-content  ;
-    height: fit-content;
-    padding: 10px;
-    margin: 20px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-}
 .card-left{
     transform: perspective(5em) rotatey(-10deg);
     transform-style: preserve-3d;

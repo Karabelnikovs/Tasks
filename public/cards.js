@@ -57,7 +57,7 @@ function formatDeadlineDate(deadlineDate) {
   const deadline = new Date(deadlineDate);
 
   const isOverdue = currentDate >= deadline;
-  const color = isOverdue ? "red" : "black";
+  const color = isOverdue ? "red" : "white";
 
   const formattedDate = deadline.toLocaleString(); // Adjust formatting as needed
   return `<div style="color: ${color}">${formattedDate}</div>`;
@@ -105,7 +105,7 @@ async function getCards() {
     data.forEach((card, index) => {
       let cardPush = document.createElement("div");
       cardPush.classList =
-        "w-60 h-80 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col items-start justify-center gap-3 hover:bg-gray-900 hover:shadow-2xl hover:shadow-purple-400 transition-shadow";
+        "w-60 h-80 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col items-start justify-center gap-3 hover:bg-gray-900 hover:shadow-lg hover:shadow-purple-400 transition-shadow";
       cardPush.id = index;
       cardPush.innerHTML += `<div class="title">Title: ${card.title}</div>`;
       cardPush.innerHTML += `<div class="user">User: ${card.username}</div>`;
