@@ -35,7 +35,6 @@ function generatePassword(length) {
     passex.innerHTML = password;
   }
 inputs.forEach((input) => {
-    console.log(input);
   const parentElement = input.parentElement;
   const span = parentElement.querySelector("span");
 
