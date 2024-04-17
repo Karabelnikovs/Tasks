@@ -54,7 +54,13 @@
 
                             </div>
                         </div>
-
+                        <?php if (!empty($errors)):?>
+                        <div class="text-red-500 text-xs mt-2">
+                            <?php foreach ($errors as $error):?>
+                                <li><?= $error?></li>
+                            <?php endforeach?>
+                        </div>
+                    <?php endif?>
                         <div>
                             <button
                                 class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">

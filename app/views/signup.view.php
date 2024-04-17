@@ -92,7 +92,13 @@
 
                         </div>
                     </div>
-
+                    <?php if (!empty($errors)):?>
+                        <div class="text-red-500 text-xs mt-2">
+                            <?php foreach ($errors as $error):?>
+                                <li><?= $error?></li>
+                            <?php endforeach?>
+                        </div>
+                    <?php endif?>
 
                     <div>
                         <button type="submit"

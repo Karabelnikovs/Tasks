@@ -19,8 +19,9 @@ class Validator
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return "Invalid email format.";
+        }else{
+            return null;
         }
-        return null;
     }
 
     public static function validateDatetime($datetimeString, $format = 'Y-m-d H:i:s')
@@ -28,8 +29,9 @@ class Validator
         $dateTime = DateTime::createFromFormat($format, $datetimeString);
         if (!$dateTime || $dateTime->format($format) !== $datetimeString) {
             return "Invalid datetime format. Expected format: " . $format;
+        }else{
+            return null;
         }
-        return null;
     }
     public static function string(string $value, int $min = 0, int $max = INF)
     {
@@ -43,8 +45,9 @@ class Validator
         $usernameRegex = "/^[a-zA-Z0-9_]+$/";
         if (!preg_match($usernameRegex, $username) || strlen($username)<4 || strlen($username)>20) {
             return "Username must be 4-20 characters and contain only letters, numbers, and underscores.";
+        }else{
+            return null;
         }
-        return null;
     }
 
     public static function validatePassword($password)
@@ -52,16 +55,18 @@ class Validator
         $passwordRegex = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@$%^&*])[a-zA-Z0-9.!@$%^&*]{8,}$/";
         if (!preg_match($passwordRegex, $password)) {
             return "Password must be at least 8 characters and include at least one uppercase letter, lowercase letter, number, and special character.";
+        }else{
+            return null;
         }
-        return null;
     }
 
     public static function validatePasswordConfirmation($password, $passwordConfirmation)
     {
         if ($password !== $passwordConfirmation) {
             return "Password confirmation does not match password.";
+        }else{
+            return null;
         }
-        return null;
     }
 
     public static function validate($email, $username, $password, $passwordConfirmation)

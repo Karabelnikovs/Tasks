@@ -9,6 +9,7 @@ $is_invalid = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $db = new Database($config["config"]);
+    $errors = [];
 
 
 
@@ -20,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($user)) {
         $user = $user[0];
         if ($user) {
-            // pswrd: 1234Aa!1
             if (password_verify($_POST["password"], $user["PASSWORD"])) {
 
                 session_start();
@@ -31,9 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie("user_id", $_SESSION["user_id"]);
                 header("Location: tasks");
                 exit();
+            }else{
+                $errors["password"] = "Password is incorrect";
             }
         }
         $is_invalid = true;
+    }else{
+        $errors["email"] = "User does not exist";
     }
 
 

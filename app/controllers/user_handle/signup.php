@@ -39,9 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die();
         }
     }
-    else{
-        var_dump($errors);
-    }
 }
 
 
