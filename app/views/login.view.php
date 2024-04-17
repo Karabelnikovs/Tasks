@@ -16,8 +16,8 @@
         <div class="p-12 bg-white mx-auto rounded-3xl w-96 ">
             <div class="mb-7">
                 <h3 class="font-semibold text-2xl text-gray-800">Login </h3>
-                <p class="text-gray-400">Don't have an account? <a href="signup"
-                        class="text-sm text-purple-700 hover:text-purple-700">Sign Up</a></p><br>
+                <p class="text-gray-400 font-bold">Don't have an account? <a href="signup"
+                        class="text-sm text-purple-700 hover:text-purple-700 font-extrabold">Sign Up</a></p><br>
                 <div class="text-sm ml-auto">
                 </div>
 

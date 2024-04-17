@@ -20,8 +20,8 @@
             <div class="mb-7">
                 <h3 class="font-semibold text-2xl text-gray-800 flex items-center justify-between ">Signup</h3>
                 <div class="text-sm ml-auto">
-                    <p class="text-gray-400">Already have an account?
-                        <a href="login" class="text-purple-700 hover:text-purple-600">
+                    <p class="text-gray-400 font-bold">Already have an account?
+                        <a href="login" class="text-purple-700 hover:text-purple-600 font-extrabold">
                             Login
                         </a>
                     </p>
