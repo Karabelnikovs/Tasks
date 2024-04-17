@@ -6,15 +6,17 @@ let cardsElements = [];
  * Sends a post request to the server, clears and gets new cards from the said server.
  */
 async function taskDone(index) {
-  id = index;
-  let form = new FormData();
-  form.append("check", id);
-  await fetch("check", {
-    method: "POST",
-    body: form,
-  });
-  clearCards();
-  getCards();
+
+    id = index;
+    let form = new FormData();
+    form.append("check", id);
+    await fetch("check", {
+      method: "POST",
+      body: form,
+    });
+    clearCards();
+    getCards();
+  
 }
 
 /**

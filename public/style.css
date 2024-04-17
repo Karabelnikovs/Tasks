@@ -8,17 +8,25 @@
     overflow: hidden;
     font-size: xx-small;
     width: 100vw;
-    height: 70vh;
+    height: 100vh;
 }
 
 
 .card-left{
+    cursor: default;
     transform: perspective(5em) rotatey(-10deg);
     transform-style: preserve-3d;
 }
 .card-right{
+    cursor: default;
     transform: perspective(5em) rotatey(10deg);
     transform-style: preserve-3d;
+}
+.card-left button{
+    cursor:default;
+}
+.card-right button{
+    cursor:default;
 }
 .card:hover{
     transform: scale(1.1);
