@@ -55,15 +55,6 @@
                             </div>
                         </div>
 
-
-                        <div class="flex items-center justify-between">
-
-                            <div class="text-sm ml-auto">
-                                <a href="#" class="text-purple-700 hover:text-purple-600">
-                                    Forgot your password?
-                                </a>
-                            </div>
-                        </div>
                         <div>
                             <button
                                 class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">

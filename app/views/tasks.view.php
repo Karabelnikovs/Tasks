@@ -1,4 +1,8 @@
 <?php require "components/head.php" ?>
+<div
+    class="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden">
+
+</div>
 <?php if (isset($_SESSION["user_id"])) { ?>
     <p><a href="logout" class="btn btn-outline-danger">Log out</a></p>
     <p><a href="create" class="btn btn-outline-info" style="position: absolute; top: 20px; right: 20px;">Add task</a></p>
@@ -27,7 +31,7 @@
     <h2>Darbi:</h2>
 
     <div id="container"></div>
-        <!-- <div class="table-responsive">
+    <!-- <div class="table-responsive">
             <table class="table table-bordered" id="responsive-table">
                 <thead>
                     <tr>
@@ -59,7 +63,7 @@
                             </td>
 
                             <td>
-                                <p style="color: <?= (date("Y-m-d H:i:s",time()) >= $task["deadline_date"]) ? 'red' : 'black'; ?>"><?= $task["deadline_date"] ?></p>
+                                <p style="color: <?= (date("Y-m-d H:i:s", time()) >= $task["deadline_date"]) ? 'red' : 'black'; ?>"><?= $task["deadline_date"] ?></p>
                             </td>
                             <td>
                                 <?php if (

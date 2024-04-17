@@ -42,7 +42,9 @@ function fixPHPDone(donedata) {
 function formatDoneButton(donedata) {
   done = donedata ? true : false;
   text = done ? "Done" : "Due";
-  btn = done ? "btn btn-success" : "btn btn-danger";
+  btn = done
+    ? "bg-purple-700 font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-colors"
+    : "bg-gray-700 font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-colors";
   return `class="${btn}">${text}`;
 }
 /**
@@ -102,19 +104,24 @@ async function getCards() {
     const data = await fetchData(); // Fetch data from server
     data.forEach((card, index) => {
       let cardPush = document.createElement("div");
-      cardPush.classList.add("card");
+      cardPush.classList =
+        "w-60 h-80 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col items-start justify-center gap-3 hover:bg-gray-900 hover:shadow-2xl hover:shadow-purple-400 transition-shadow";
       cardPush.id = index;
       cardPush.innerHTML += `<div class="title">Title: ${card.title}</div>`;
       cardPush.innerHTML += `<div class="user">User: ${card.username}</div>`;
       cardPush.innerHTML += `<div class="created">Created: ${card.created_date}</div>`;
-      cardPush.innerHTML += `<div class="deadline">Deadline: ${formatDeadlineDate(card.deadline_date)}</div>`;
+      cardPush.innerHTML += `<div class="deadline">Deadline: ${formatDeadlineDate(
+        card.deadline_date
+      )}</div>`;
       cardPush.innerHTML += `<div class="description">Description: ${card.DESCRIPTION}</div>`;
-      cardPush.innerHTML += `<button onclick="taskDone(${index})" ${formatDoneButton(card.done)}</button>`;
+      cardPush.innerHTML += `<button onclick="taskDone(${index})" ${formatDoneButton(
+        card.done
+      )}</button>`;
       cardPush.addEventListener("click", () => {
         if (index != id) {
           id = index;
           updateCards();
-        } 
+        }
       });
       let cardPushArr = { card: cardPush };
       cardsElements.push(cardPushArr);
@@ -156,14 +163,12 @@ function updateCards() {
         container.append(cardsElements[0].card);
         container.append(cardsElements[1].card);
       } else if (id === length - 1) {
-        
         cardsElements[id - 1].card.classList.add("card-left");
         cardsElements[0].card.classList.add("card-right");
         container.append(cardsElements[id - 1].card);
         container.append(cardsElements[id].card);
         container.append(cardsElements[0].card);
       } else {
-        
         cardsElements[id - 1].card.classList.add("card-left");
         cardsElements[id + 1].card.classList.add("card-right");
         container.append(cardsElements[id - 1].card);
