@@ -13,6 +13,7 @@ CREATE TABLE tasks(
     created_date DATETIME NOT NULL,
     deadline_date DATETIME,
     title VARCHAR(255) NOT NULL,
+    done BOOL DEFAULT FALSE,
     DESCRIPTION VARCHAR(255),
     FOREIGN KEY (user_created) REFERENCES users(id) 
 );
