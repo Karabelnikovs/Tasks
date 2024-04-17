@@ -3,6 +3,7 @@
     class="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden">
 
 </div>
+<script defer src="public\tooltip.js"></script>
 <div class="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
     <div class="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
         <div class="self-start hidden lg:flex flex-col  text-gray-300">
@@ -27,6 +28,7 @@
                             <input type="email" id="email" name="email" value="<?= $_POST['email'] ?? "" ?>"
                                 class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
                                 placeholder="Email">
+                            <span class="absolute hidden z-20 w-48 rounded-lg bg-gray-700 px-2 py-1 text-center text-sm text-white">Type email you used in signup</span>
                         </div>
 
 
@@ -34,6 +36,7 @@
                             <input id="password" name="password" value="<?= $_POST['password'] ?? "" ?>"
                                 placeholder="Password" :type="show ? 'password' : 'text'"
                                 class="text-sm text-black-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400">
+                                <span class="absolute hidden z-20 w-48 rounded-lg bg-gray-700 px-2 py-1 text-center text-sm text-white">Type password you used in signup</span>
                             <div class="flex items-center absolute inset-y-0 right-0 mr-3  text-sm leading-5">
 
                                 <svg @click="show = !show" :class="{'hidden': !show, 'block':show }"
@@ -54,13 +57,13 @@
 
                             </div>
                         </div>
-                        <?php if (!empty($errors)):?>
-                        <div class="text-red-500 text-xs mt-2">
-                            <?php foreach ($errors as $error):?>
-                                <li><?= $error?></li>
-                            <?php endforeach?>
-                        </div>
-                    <?php endif?>
+                        <?php if (!empty($errors)): ?>
+                            <div class="text-red-500 text-xs mt-2">
+                                <?php foreach ($errors as $error): ?>
+                                    <li><?= $error ?></li>
+                                <?php endforeach ?>
+                            </div>
+                        <?php endif ?>
                         <div>
                             <button
                                 class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">

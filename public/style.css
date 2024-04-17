@@ -2,6 +2,7 @@
 #container{
     display: flex;
     flex-direction: row;
+    flex-flow: wrap;
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
@@ -14,12 +15,12 @@
 
 .card-left{
     cursor: default;
-    transform: perspective(5em) rotatey(-10deg);
+    transform: perspective(7em) rotatey(-10deg);
     transform-style: preserve-3d;
 }
 .card-right{
     cursor: default;
-    transform: perspective(5em) rotatey(10deg);
+    transform: perspective(7em) rotatey(10deg);
     transform-style: preserve-3d;
 }
 .card-left button{

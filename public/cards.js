@@ -6,17 +6,22 @@ let cardsElements = [];
  * Sends a post request to the server, clears and gets new cards from the said server.
  */
 async function taskDone(index) {
+  const taskElement = document.getElementById(`${index}`);
+  const buttonElement = taskElement.querySelector("button");
+  if (buttonElement) {
+    buttonElement.classList.add("flex", "items-center", "justify-center");
+    buttonElement.innerHTML = `<div class="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
+  }
+  let form = new FormData();
 
-    id = index;
-    let form = new FormData();
-    form.append("check", id);
-    await fetch("check", {
-      method: "POST",
-      body: form,
-    });
-    clearCards();
-    getCards();
-  
+  id = index;
+  form.append("check", id);
+  await fetch("check", {
+    method: "POST",
+    body: form,
+  });
+  clearCards();
+  getCards();
 }
 
 /**
@@ -107,7 +112,7 @@ async function getCards() {
     data.forEach((card, index) => {
       let cardPush = document.createElement("div");
       cardPush.classList =
-        "w-60 h-80 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col items-start justify-center gap-3 hover:bg-gray-900 hover:shadow-lg hover:shadow-purple-400 transition-shadow";
+        "w-60 h-80 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col items-start justify-center gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow";
       cardPush.id = index;
       cardPush.innerHTML += `<div class="title">Title: ${card.title}</div>`;
       cardPush.innerHTML += `<div class="user">User: ${card.username}</div>`;
@@ -143,9 +148,10 @@ function updateCards() {
   container.innerHTML = "";
   cardsElements.forEach((cardElement) => {
     cardElement.card.style.zIndex = "0";
+    cardElement.card.style.margin = "30px";
     cardElement.card.style.scale = "0.5";
     cardElement.card.style.userSelect = "none";
-    cardElement.card.style.filter = "blur(5px)";
+    cardElement.card.style.filter = "blur(3px)";
     cardElement.card.classList.remove("card-left");
     cardElement.card.classList.remove("card-right");
   });
