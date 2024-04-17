@@ -44,5 +44,6 @@ inputs.forEach((input) => {
     });
   }
 });
-
-generatePassword();
+if (document.getElementById("example")) {
+  generatePassword();
+}
