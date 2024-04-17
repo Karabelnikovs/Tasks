@@ -58,7 +58,7 @@ class Validator
 
     public static function validatePassword($password)
     {
-        $passwordRegex = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@$%^&*])[a-zA-Z0-9.!@$%^&*]{8,}$/";
+        $passwordRegex = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!-~])[a-zA-Z0-9!-~]{8,}$/";
         if (empty($password)) {
             return "Password is required!";
         } else if (!preg_match($passwordRegex, $password)) {
