@@ -4,11 +4,12 @@
 
 </div>
 <?php if (isset($_SESSION["user_id"])) { ?>
-    <p><a href="logout" class="btn btn-outline-danger">Log out</a></p>
-    <p><a href="create" class="btn btn-outline-info" style="position: absolute; top: 20px; right: 20px;">Add task</a></p>
+    <a href="logout" class="btn btn-outline-danger">Log out</a>
+    <a href="create" class="btn btn-outline-info" style="position: absolute; top: 20px; right: 20px;">Add task</a>
 
 <?php } else { ?>
-    <p><a href="login" class="btn btn-outline-success">Log in</a></p>
+    <a href="login" class="btn btn-outline-success"
+    style="position: absolute; top: 20px; right: 20px;">Log in</a>
 <?php } ?>
 
 <script defer src="public/cards.js"></script>
