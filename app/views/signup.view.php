@@ -4,7 +4,7 @@
 
 </div>
 <script defer src="public/tooltip.js"></script>
-<div class="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl z-10">
+<div class="relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl z-10">
     <div class="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
         <div class="self-start hidden lg:flex flex-col  text-gray-300">
 
@@ -17,7 +17,7 @@
 
 
     <div class="flex justify-center self-center z-16">
-        <div class="p-12 bg-white mx-auto rounded-3xl w-96 ">
+        <div class="p-12 bg-white mx-auto rounded-3xl w-96 shadow-xl">
             <div class="mb-7">
                 <h3 class="font-semibold text-2xl text-gray-800 flex items-center justify-between ">Signup</h3>
                 <div class="text-sm ml-auto">

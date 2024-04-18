@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="flex justify-center self-center  z-10">
-        <div class="p-12 bg-white mx-auto rounded-3xl w-96 ">
+        <div class="p-12 bg-white mx-auto rounded-3xl w-96 shadow-xl">
             <div class="mb-7">
                 <h3 class="font-semibold text-2xl text-gray-800">Login </h3>
                 <p class="text-gray-400 font-bold">Don't have an account? <a href="signup"

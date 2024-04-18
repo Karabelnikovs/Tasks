@@ -1,23 +1,22 @@
 const container = document.getElementById("container");
 let id = 0;
 let cardsElements = [];
-
+let fetching = false;
 /**
  * Sends a post request to the server, clears and gets new cards from the said server.
  */
 async function taskDone(index) {
-  const taskElement = document.getElementById(`done-${index}`);
-  const buttonElement = taskElement.querySelector("button");
-
+  const buttonElement = document.getElementById(`done-${index}`);
   let form = new FormData();
-  if(!id){
+  if (!id) {
     id = index;
   }
-  if(id == index){
-    if (buttonElement) {
-      buttonElement.classList.add("flex", "items-center", "justify-center");
-      buttonElement.innerHTML = `<div class="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
-    }
+  if (id == index && !fetching && buttonElement) {
+    fetching = !fetching;
+
+    buttonElement.classList.add("flex", "items-center", "justify-center");
+    buttonElement.innerHTML = `<div class="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
+
     id = index;
     form.append("check", id);
     await fetch("check", {
@@ -29,18 +28,21 @@ async function taskDone(index) {
   }
 }
 
+
+
+
 async function removeTask(index) {
-  const taskElement = document.getElementById(`delete-${index}`);
-  const buttonElement = taskElement.querySelector("button");
+  const buttonElement = document.getElementById(`delete-${index}`);
+  const div = buttonElement.getElementsByClassName("absolute flex justify-center content-center bg-gray-700 font-extrabold m-3 rounded-xl hover:bg-red-500 transition-all top-0 right-0 h-4 w-4 group")
   let form = new FormData();
-  if(!id){
+  if (!id) {
     id = index;
   }
-  if(id == index){
-    if (buttonElement) {
-      buttonElement.classList.add("flex", "items-center", "justify-center");
-      buttonElement.innerHTML = `<div class="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
-    }
+  if (id == index && !fetching && div) {
+    div.classList = "";
+    div.classList = "flex items-center justify-center";
+    div.innerHTML = `<div class="inline-block h-3 w-3 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
+
     id = index;
     form.append("delete", id);
     await fetch("delete", {
@@ -50,7 +52,9 @@ async function removeTask(index) {
     clearCards();
     getCards();
   }
+
 }
+
 
 /**
  * Clears all cards from the page.
@@ -133,7 +137,7 @@ async function fetchData() {
   return data;
 }
 function handleChange(index) {
-  
+
   if (index != id) {
     id = index;
     updateCards();
@@ -164,7 +168,7 @@ async function getCards() {
       cardPush.innerHTML += `<button id="done-${index}" onclick="taskDone(${index})" ${formatDoneButton(
         card.done
       )}</button>`;
-      cardPush.addEventListener("click", function(){handleChange(index)});
+      cardPush.addEventListener("click", function () { handleChange(index) });
       let cardPushArr = { card: cardPush };
       cardsElements.push(cardPushArr);
     });
@@ -186,6 +190,7 @@ function resetStyle(card) {
  * Updates the cards displayed in the container.
  */
 function updateCards() {
+  fetching = false;
   const length = cardsElements.length;
   container.innerHTML = "";
   if (length <= 2) {
