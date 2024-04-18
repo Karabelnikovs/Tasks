@@ -4,9 +4,8 @@
 
 </div>
 <?php if (isset($_SESSION["user_id"])) { ?>
-    <a href="logout" class="btn btn-outline-danger"
-    style="position: absolute; top: 20px; left: 20px;">Log out</a>
-    <a href="create" class="btn btn-outline-info" style="position: absolute; top: 20px; right: 20px;">Add task</a>
+    <a href="logout" class="transition-all text-white hover:no-underline duration-300 rounded-full px-2 py-1 absolute top-7 left-10 border-2 border-red-500 hover:bg-red-500">Log out</a>
+    <a href="create" class="transition-all text-white hover:no-underline duration-300 rounded-full px-2 py-1 absolute top-7 right-10 border-2 border-purple-700 hover:bg-purple-700">Add task</a>
 
 <?php } else { ?>
     <a href="login" class="btn btn-outline-success"
@@ -23,7 +22,7 @@
 
 <div class="content">
     <form class="form relative">
-        <div class="input-group mb-3">
+        <div class="input-group top-5">
             <button class="absolute left-2 -translate-y-1/2 top-1/2 p-1">
                 <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
                     aria-labelledby="search" class="w-5 h-5 text-gray-700">
@@ -33,7 +32,7 @@
                 </svg>
             </button>
             <input name="title" type="text" value='<?= ($_GET["title"] ?? '') ?>'
-                class="input rounded-full px-8 py-3 border-2 border-transparent focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md"
+                class="input rounded-full px-8 py-2 border-2 border-transparent focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md"
                 placeholder="Search..." required="" />
             <button type="reset" class="absolute right-3 -translate-y-1/2 top-1/2 p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24"
@@ -48,93 +47,8 @@
     <h2 style="font-size: 30px;">Darbi:</h2>
 
     <div id="container">
-    <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>
+    <div class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>
     </div>
-    <!-- <div class="table-responsive">
-            <table class="table table-bordered" id="responsive-table">
-                <thead>
-                    <tr>
-                        <th scope="col">Nosaukums</th>
-                        <th scope="col">Apraksts</th>
-                        <th scope="col">Autors</th>
-                        <th scope="col">Uztaisīts</th>
-                        <th scope="col">Deadline</th>
-                        <th scope="col">Pabeigts</th>
-                        <th scope="col">Papildus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($tasks as $index => $task): ?>
-                        <tr>
-                            <th scope="row">
-                                <?= $task["title"] ?>
-                                </td>
-                            <td>
-                                <?= $task["DESCRIPTION"] ?>
-                            </td>
-                            <td>
-                                <?= $task["username"] ?>
-                            </td>
-
-                            <td>
-                                
-                                <?= $task["created_date"] ?>
-                            </td>
-
-                            <td>
-                                <p style="color: <?= (date("Y-m-d H:i:s", time()) >= $task["deadline_date"]) ? 'red' : 'black'; ?>"><?= $task["deadline_date"] ?></p>
-                            </td>
-                            <td>
-                                <?php if (
-                                    isset($_SESSION["user_id"])
-                                    && $task["done"] == 1
-                                    && isset($_SESSION["user_id"]) == $task["user_created"]
-                                ): ?>
-                                    <form method="POST">
-                                        <input type="hidden" name="done" value="<?= $index ?>" class="form-control">
-                                        <button type="submit" class="<?=
-                                            $_SESSION["user_id"] == $task["user_created"]
-                                            ? "btn btn-success" : "btn" ?>">Ir</button>
-                                    </form> 
-                                <?php elseif (
-                                    isset($_SESSION["user_id"])
-                                    && $task["done"] == 0
-                                    && isset($_SESSION["user_id"]) == $task["user_created"]
-                                ): ?>
-                                    <form method="POST">
-                                        <input type="hidden" name="notdone" value="<?= $index ?>" class="form-control">
-                                        <button type="submit" class="<?=
-                                            $_SESSION["user_id"] == $task["user_created"]
-                                            ? "btn btn-danger" : "btn" ?>">Nav</button>
-                                    </form>
-                                <?php else: ?>
-                                    Ieejiet lai redzēt izpildijuma datus.
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if (isset($_SESSION["user_id"])) { ?>
-                                    <form method="POST" action="delete">
-                                        <input type="hidden" name="delete" value="<?= $task["id"] ?>">
-                                        <button class="<?=
-                                            $_SESSION["user_id"] == $task["user_created"]
-                                            ? "btn btn-outline-danger" : "btn" ?>" type="submit">Izdzēst</button>
-                                    </form>
-                                    <form method="POST">
-                                        <input type="hidden" name="edit" value="<?= $task["id"] ?>">
-                                        <button class="<?=
-                                            $_SESSION["user_id"] == $task["user_created"]
-                                            ? "btn btn-outline-info" : "btn" ?>" type="submit">Rediģēt</button>
-                                    </form>
-                                <?php } else { ?>
-                                    Ieejiet lai redzēt papildus opcijas.
-                                <?php } ?>
-                            </td>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div> -->
 </div>
 </body>
 

@@ -2,7 +2,6 @@
 #container{
     display: flex;
     flex-direction: row;
-    flex-flow: wrap;
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
