@@ -9,6 +9,7 @@
     font-size: xx-small;
     width: 100vw;
     height: 100vh;
+    user-select: none;
 }
 
 
