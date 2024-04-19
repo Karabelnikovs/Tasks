@@ -14,7 +14,7 @@ async function taskDone(index) {
   if (id == index && !fetching && buttonElement) {
     fetching = !fetching;
 
-    buttonElement.classList.remove("hover:bg-sky-500")
+    buttonElement.classList.remove("hover:bg-sky-500");
     buttonElement.classList.add("flex", "items-center", "justify-center");
     buttonElement.innerHTML = `<div class="cursor-default inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
 
@@ -29,9 +29,6 @@ async function taskDone(index) {
   }
 }
 
-
-
-
 async function removeTask(index) {
   const buttonElement = document.getElementById(`delete-${index}`);
   let form = new FormData();
@@ -40,8 +37,8 @@ async function removeTask(index) {
   }
   if (id == index && !fetching && buttonElement) {
     fetching = !fetching;
-    buttonElement.innerHTML = '';
-    buttonElement.classList.remove("hover:bg-red-500")
+    buttonElement.innerHTML = "";
+    buttonElement.classList.remove("hover:bg-red-500");
     buttonElement.innerHTML = `<div class="absolute cursor-default flex justify-center content-center bg-gray-700 font-extrabold rounded-xl top-0 right-0 inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
 
     id = index;
@@ -53,9 +50,7 @@ async function removeTask(index) {
     clearCards();
     getCards();
   }
-
 }
-
 
 /**
  * Clears all cards from the page.
@@ -138,7 +133,6 @@ async function fetchData() {
   return data;
 }
 function handleChange(index) {
-
   if (index != id) {
     id = index;
     updateCards();
@@ -147,7 +141,7 @@ function handleChange(index) {
 }
 async function getCards() {
   try {
-    const data = await fetchData(); 
+    const data = await fetchData();
     data.forEach((card, index) => {
       let cardPush = document.createElement("div");
       cardPush.classList =
@@ -168,7 +162,9 @@ async function getCards() {
       cardPush.innerHTML += `<div id="done-${index}" onclick="taskDone(${index})" ${formatDoneButton(
         card.done
       )}</div>`;
-      cardPush.addEventListener("click", function () { handleChange(index) });
+      cardPush.addEventListener("click", function () {
+        handleChange(index);
+      });
       let cardPushArr = { card: cardPush };
       cardsElements.push(cardPushArr);
     });
@@ -190,9 +186,10 @@ function resetStyle(card) {
 /**
  * Prompts user to add a new card.
  */
-function prompEmpty(){
+function prompEmpty() {
   const element = document.createElement("div");
-  element.classList = "w-60 h-80 flex flex-col z-20 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col justify-center gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow";
+  element.classList =
+    "w-60 h-80 flex flex-col z-20 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col justify-center gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow";
   element.innerHTML = `<a href="create" class=" w-70 h-90 transition-all text-white text-xl hover:no-underline duration-300 text-center rounded-full px-2 py-1 border-2 border-purple-700 hover:bg-purple-700">Add task</a>`;
   container.append(element);
 }
@@ -205,10 +202,13 @@ function updateCards() {
   const length = cardsElements.length;
   let zIndexCard;
   if (length === 0) {
-    
-  container.innerHTML = "";
+    container.innerHTML = "";
     prompEmpty();
     return;
+  }
+
+  if(length == 1){
+    id = 0;
   }
 
   container.innerHTML = "";
@@ -232,7 +232,7 @@ function updateCards() {
       resetStyle(cardElement.card);
     });
     zIndexCard = cardsElements[id];
-    if(zIndexCard){
+    if (zIndexCard) {
       zIndexCard.card.style.zIndex = "1";
       zIndexCard.card.style.scale = "1.5";
       zIndexCard.card.style.filter = "blur(0px)";
@@ -252,8 +252,8 @@ function updateCards() {
     container.append(prevCard.card, zIndexCard.card, nextCard.card);
   } else if (length === 2) {
     container.append(cardsElements[1].card, cardsElements[0].card);
-
   } else {
+    id = 0;
     container.append(cardsElements[0].card);
   }
 }
