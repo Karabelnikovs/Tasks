@@ -26,19 +26,20 @@
 
 
 
-<div class="w-100 h-100 flex justify-center align-center">
+<div class="w-100 h-100 flex select-none justify-center align-center">
     <div
-        class="w-80 h-50 flex absolute mt-80 bottom-30 flex-col z-20 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col
-        justify-center gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow">
-        <form method="post" action="create">
+        class="w-80 h-50 flex absolute mt-80  flex-col z-20 bg-neutral-800 rounded-3xl text-neutral-300 p-4 gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow">
+        <form class="w-100 h-50" method="post" action="create">
             <input name="title" type="text" placeholder="Title"
-                value="<?= isset($_POST["title"]) ? $_POST["title"] : "" ?>" class="bg-gray-700 rounded mx-10 my-2"><br>
-            <input name="description" type="text" placeholder="Description"
+                value="<?= isset($_POST["title"]) ? $_POST["title"] : "" ?>" class="bg-gray-700 rounded mx-10 my-2">
+            <textarea name="description"
+            
+            placeholder="Description"
                 value="<?= isset($_POST["description"]) ? $_POST["description"] : "" ?>"
-                class="bg-gray-700 rounded mx-10 my-2"><br>
+                class="resize-none h-full bg-gray-700 rounded mx-10 my-4"></textarea>
             <input name="deadline_date" type="datetime-local"
                 value="<?= isset($_POST["deadline_date"]) ? $_POST["deadline_date"] : "" ?>"
-                class="bg-gray-700 rounded mx-10 my-2"><br>
+                class="bg-gray-700 rounded mx-10 mb-12">
 
             <?php
             if (!empty($errors)) {
