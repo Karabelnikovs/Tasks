@@ -15,7 +15,8 @@
     <a href="create"
         class="group w-fit flex flex-nowrap transition-all text-white hover:no-underline duration-300 rounded-full px-2 py-1 absolute top-7 right-10 border-2 border-purple-700 hover:bg-purple-700">Add
         task
-        <svg class="group-hover:stroke-black stroke-white transition-all duration-300 relative stroke-2 top-1 -right-0.5 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        <svg class="group-hover:stroke-black stroke-white transition-all duration-300 relative stroke-2 top-1 -right-0.5 w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="relative top-0 right-0 w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
@@ -32,11 +33,7 @@
 
 
 
-
-
-
-<div class="content">
-    <form class="form relative">
+<form class="form absolute top-0 left-1/2">
         <div class="input-group top-5">
             <button class="absolute left-2 -translate-y-1/2 top-1/2 p-1">
                 <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -46,10 +43,18 @@
                     </path>
                 </svg>
             </button>
-            <input name="title" type="text" value='<?= ($_GET["title"] ?? '') ?>'
-                class="input rounded-full px-8 py-2 border-2 border-transparent focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md"
+            <input name="title" type="text" value='<?= ($_GET["title"] ?? '') ?>' class="input rounded-full px-8
+                transition-all duration-300
+                w-px
+                py-2 border-2
+                focus:w-full
+                border-transparent
+                focus:outline-none
+                focus:border-blue-500 placeholder-gray-400
+                shadow-md"
                 placeholder="Search..." required="" />
-            <button type="reset" class="absolute right-3 -translate-y-1/2 top-1/2 p-1">
+            <button type="reset" class="absolute right-3 -translate-y-1/2
+             top-1/2 p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -59,13 +64,18 @@
     </form>
 
 
-    <h2 style="font-size: 30px;">Darbi:</h2>
 
+<div class="content">
+
+<div class="hide-card" style="left: 0"></div>
     <div id="container">
+        
         <div
-            class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white">
+            class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" style="margin-left: 49vw;">
         </div>
+        
     </div>
+    <div class="hide-card" style="right: 0"></div>
 </div>
 </body>
 
