@@ -24,6 +24,8 @@
   }
 
   .card.selected {
+    box-shadow: #a78bfa;
+    box-shadow: 0 10px 15px -3px #a78bfa, 0 4px 6px -4px #a78bfa;
     z-index: 99;
     transform: scale(1.2); /* Increase size for selected card */
     filter: blur(0); /* Remove blur from selected card */
