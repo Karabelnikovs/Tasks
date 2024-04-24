@@ -20,8 +20,6 @@
             class="relative top-0 right-0 w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
-
-
     </a>
 
 <?php } else { ?>
@@ -66,16 +64,20 @@
 
 
 <div class="content">
-
-<div class="hide-card" style="left: 0"></div>
     <div id="container">
-        
         <div
             class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" style="margin-left: 49vw;">
         </div>
-        
     </div>
-    <div class="hide-card" style="right: 0"></div>
+    <a href="create"
+        class="w-fit absolute flex flex-nowrap transition-all text-white hover:no-underline duration-300 rounded-full bottom-24  border-2 border-purple-700 hover:bg-purple-700">
+        <svg class="hover:stroke-black stroke-white transition-all duration-300 relative stroke-2  w-10 h-10"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="relative top-0 right-0 w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+    </a>
+
 </div>
 </body>
 
