@@ -2,7 +2,7 @@
 <script>
     function redirectAfterSeconds() {
         setTimeout(function () {
-            window.location.href = "/";
+            window.location.href = "tasks";
         }, 5000);
     }
 </script>
