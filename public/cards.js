@@ -91,24 +91,53 @@ function formatDoneButton(donedata) {
   const done = donedata? true : false;
   const text = done? "Done" : "Due";
   const btn = done
-   ? "bg-purple-700 cursor-pointer font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all "
-    : "bg-gray-700   cursor-pointer font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all ";
+   ? "bg-purple-700 cursor-pointer text-center w-full h-fit font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all "
+    : "bg-gray-700   cursor-pointer text-center w-full h-fit font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all ";
   return `class="${btn}">${text}`;
 }
 /**
- * Returns the deadline date formatted if overdue then red, otherwise black.
+ * Formats a deadline date string based on its proximity to the current date and time.
  *
- * @returns {string} The user ID from the cookie.
+ * This function takes a deadline date string as input and returns a formatted string
+ * indicating the deadline's relative time. The output can be:
+ *  - "Overdue" in red for deadlines that have already passed.
+ *  - "Today at hh:mm" in red for deadlines scheduled for today.
+ *  - "Tomorrow at hh:mm" in red for deadlines scheduled for tomorrow.
+ *  - Day of the week (Monday, Tuesday, etc.) in orange at hh:mm for deadlines within the next 7 days.
+ *  - The date in the current locale format for deadlines beyond a week.
+ *
+ * @param {string} deadlineDate - The deadline date string in a format parsable by the Date constructor.
+ *
+ * @returns {string} - A formatted string representing the deadline's relative time.
  */
 function formatDeadlineDate(deadlineDate) {
   const currentDate = new Date();
   const deadline = new Date(deadlineDate);
 
-  const isOverdue = currentDate >= deadline;
-  const color = isOverdue ? "red" : "white";
+  const diffInMs = deadline - currentDate;
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  const diffInHours = Math.floor((diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const diffInMinutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
+  const diffInSeconds = Math.floor((diffInMs % (1000 * 60)) / 1000);
 
-  const formattedDate = deadline.toLocaleString(); // Adjust formatting as needed
-  return `<div style="color: ${color}">${formattedDate}</div>`;
+  let color = diffInMs <= 0 ? "red" : "white";
+  console.log(diffInDays, diffInHours);
+  let formattedString;
+  if (diffInDays === 0 && diffInHours >= 0){
+    formattedString = `Today at ${deadline.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}`;
+    color = "orange";
+  }
+  else if (diffInDays === 1 && diffInHours >= 0) {
+    formattedString = `Tomorrow at ${deadline.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}`;
+    color = "#ffff00";
+  } else if (diffInDays >= 0 && diffInDays <= 7) {
+    const dayOfWeek = deadline.toLocaleDateString([], { weekday: 'long' }); // Monday, Tuesday, etc.
+    formattedString = `${dayOfWeek} at ${deadline.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}`;
+  }else {
+    formattedString = deadline.toLocaleDateString();
+  }
+
+  return `<p style="color: ${color}">${formattedString}</p>`;
 }
 
 /**
@@ -165,8 +194,6 @@ function createCard(card, index) {
         flex 
         shrink-0 
         flex-col 
-        items-start 
-        justify-center 
         
         rounded-3xl 
 
@@ -192,13 +219,12 @@ function createCard(card, index) {
     
     
       </div>`;
-  cardPush.innerHTML += `<div class="title">Title: ${card.title}</div>`;
-  cardPush.innerHTML += `<div class="user">User: ${card.username}</div>`;
-  cardPush.innerHTML += `<div class="created">Created: ${card.created_date}</div>`;
-  cardPush.innerHTML += `<div class="deadline">Deadline: ${formatDeadlineDate(
+  cardPush.innerHTML += `<div class="h-fit w-full p-2 px-6 text-center text-xl font-extrabold transition-all">${card.title}</div>`;
+
+  cardPush.innerHTML += `    <div class="h-100 w-full p-2 px-6 text-xs font-bold overflow-scroll transition-all py-2">${card.DESCRIPTION}</div>`;
+  cardPush.innerHTML += `<div class="h-fit w-full flex space-between p-2 px-6 text-xs font-light">Deadline: ${formatDeadlineDate(
     card.deadline_date
   )}</div>`;
-  cardPush.innerHTML += `<div class="description">Description: ${card.DESCRIPTION}</div>`;
   cardPush.innerHTML += `<div id="done-${index}" onclick="taskDone(${index})" ${formatDoneButton(
     card.done
   )}</div>`;
