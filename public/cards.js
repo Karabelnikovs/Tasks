@@ -2,10 +2,12 @@ const container = document.getElementById("container");
 let id = 0;
 let cardsElements = [];
 let fetching = false;
-/**
- * Sends a post request to the server, clears and gets new cards from the said server.
- */
 
+/**
+ * Marks the task with the given index done or due. 
+ * 
+ * @param {BigInt} index 
+ */
 async function taskDone(index) {
   const buttonElement = document.getElementById(`done-${index}`);
   let form = new FormData();
@@ -32,6 +34,12 @@ async function taskDone(index) {
   }
 }
 
+
+/**
+ * Removes a task from the list.
+ *
+ * @param {number} index - The index of the task.
+ */
 async function removeTask(index) {
   const buttonElement = document.getElementById(`delete-${index}`);
   let form = new FormData();
@@ -69,17 +77,21 @@ function clearCards() {
 function fixPHPDone(donedata) {
   return donedata ? "done" : "notdone";
 }
+function editTask(id) {
+  window.location.href = `/edit?id=${id}`;
+}
 
 /**
- * Returns the deadline string, if is done then green, otherwise red.
+ * Returns the formatted button text and style based on whether the task is done or not.
  *
- * @returns {string} Adjusted text for deadline.
+ * @param {boolean} donedata The PHP done status.
+ * @returns {string} The formatted button text and style.
  */
 function formatDoneButton(donedata) {
-  const done = donedata ? true : false;
-  const text = done ? "Done" : "Due";
+  const done = donedata? true : false;
+  const text = done? "Done" : "Due";
   const btn = done
-    ? "bg-purple-700 cursor-pointer font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all "
+   ? "bg-purple-700 cursor-pointer font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all "
     : "bg-gray-700   cursor-pointer font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all ";
   return `class="${btn}">${text}`;
 }
@@ -133,6 +145,13 @@ async function fetchData() {
   const data = await response.json(); // Parse response as JSON
   return data;
 }
+/**
+ * Creates a task card element.
+ *
+ * @param {object} card - The task data.
+ * @param {number} index - The index of the task.
+ * @returns {HTMLElement} The task card element.
+ */
 function createCard(card, index) {
   let cardPush = document.createElement("div");
   cardPush.classList = `
@@ -186,6 +205,9 @@ function createCard(card, index) {
   cardPush.addEventListener("click", () => scrollToCard(index));
   return cardPush;
 }
+/**
+ * Fetches cards data from the server and renders them on the UI.
+ */
 async function getCards() {
   clearCards();
   try {
@@ -234,15 +256,31 @@ function updateCards() {
     scrollToCard(id);
   }
 }
+/**
+ * Scrolls the page to the specified card element.
+ *
+ * @param {string} cardId - The ID of the card element.
+ */
 function scrollToCard(cardId) {
   const card = document.getElementById(cardId);
   if (card) {
-    container.scrollLeft =
-      card.offsetLeft - container.clientWidth / 2 + card.offsetWidth / 2;
+    // Get the width of the container element and the card element
+    const containerWidth = container.clientWidth;
+    const cardWidth = card.offsetWidth;
+
+    // Calculate the horizontal scroll position based on the card's position relative to the container
+    const scrollPosition = card.offsetLeft - containerWidth / 2 + cardWidth / 2;
+
+    // Set the container's scroll position to the calculated position
+    container.scrollLeft = scrollPosition;
+
+    // Update the current card ID
     id = cardId;
-    document
-      .querySelectorAll(".card")
-      .forEach((card) => card.classList.remove("selected"));
+
+    // Remove the "selected" class from all cards and add it to the specified card
+    document.querySelectorAll(".card").forEach((card) => {
+      card.classList.remove("selected");
+    });
     card.classList.add("selected");
   }
 }
