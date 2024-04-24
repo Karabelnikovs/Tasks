@@ -1,4 +1,10 @@
 <?php require "components/head.php" ?>
+<style>
+    .alert-danger {
+        color: white;
+        background-color: transparent;
+    }
+</style>
 <div class="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden"></div>
 <?php if (isset($_SESSION["user_id"])) { ?>
       <a href="/" class="group transition-all w-22 flex flex-nowrap text-white hover:no-underline duration-300 rounded-full px-4 py-1 absolute top-7 left-10 border-2 border-red-500 hover:bg-red-500">Back
