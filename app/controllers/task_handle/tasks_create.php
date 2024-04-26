@@ -20,16 +20,16 @@ $params = [];
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (Validator::string($_POST['title'], min: 5, max:50)) {
+    if (Validator::string($_POST['title'], min: 5, max: 50)) {
         $errors["title"] = "Title must be a string between 5 and 50 characters.";
     }
-    if (Validator::string($_POST["description"], min:10, max:500)) {
+    if (Validator::string($_POST["description"], min: 10, max: 500)) {
         $errors["description"] = "Description must be a string between 10 and 500 characters.";
     }
     if (!Validator::validateDatetime(strtotime($_POST["deadline_date"]))) {
         $errors["deadline_date"] = "Deadline date must be a valid date.";
     }
-    if(time() >= strtotime($_POST["deadline_date"])) {
+    if (time() >= strtotime($_POST["deadline_date"])) {
         $errors["deadline_date"] = "Deadline date cannot be in the past or this instant.";
     }
     if (empty($errors)) {

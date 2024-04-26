@@ -40,7 +40,7 @@ class Validator
     public static function string(string $value, int $min = 0, int $max = INF)
     {
         $value = trim($value);
-        return strlen($value) <= $min || strlen($value) >= $max;
+        return strlen($value) < $min || strlen($value) > $max;
     }
 
 
@@ -69,11 +69,10 @@ class Validator
     }
 
     public static function validatePasswordConfirmation($password, $passwordConfirmation)
-    {   
+    {
         if (empty($password)) {
             return "Password repeat is required!";
-        }
-        else if ($password !== $passwordConfirmation) {
+        } else if ($password !== $passwordConfirmation) {
             return "Password confirmation does not match password.";
         } else {
             return null;
