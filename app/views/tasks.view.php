@@ -4,8 +4,8 @@
 
 </div>
 <?php if (isset($_SESSION["user_id"])) { ?>
-    <form class="form absolute  left-10">
-        <div class="input-group top-7">
+    <form class="form absolute left-10 top-7">
+        <div class="input-group ">
             <button class="absolute left-2 -translate-y-1/2 top-1/2 p-1">
                 <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
                     aria-labelledby="search" class="w-5 h-5 text-gray-700">
@@ -15,9 +15,15 @@
                 </svg>
             </button>
             <input name="title" type="text" value='<?= ($_GET["title"] ?? '') ?>' class="input rounded-full px-8
-                transition-all duration-300
-                w-px
+                transition-all
+                w-0
                 py-2 border-2
+                max-w-40
+                sm:max-w-48
+                md:max-w-52
+                lg:max-w-60
+                xl:max-w-64
+                2xl:max-w-72
                 focus:w-full
                 border-transparent
                 focus:outline-none

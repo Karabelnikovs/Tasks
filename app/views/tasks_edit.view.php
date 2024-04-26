@@ -15,8 +15,8 @@
         <form class="w-100 h-100 flex flex-col items-center justify-center gap-3" method="post" action="create">
             <input name="title" type="text" placeholder="Title" value="<?= $tasks[0]["title"] ?>"
                 class="bg-gray-700 rounded-lg">
-            <textarea name="description" placeholder="Description" value="<?= $tasks[0]["DESCRIPTION"] ?>"
-                class="resize-none bg-gray-700 rounded-lg w-65 h-50"></textarea>
+            <textarea name="description" placeholder="Description"
+                class="resize-none bg-gray-700 rounded-lg w-65 h-50"><?= htmlspecialchars($tasks[0]["DESCRIPTION"]) ?></textarea>
             <input name="deadline_date" type="datetime-local" value="<?= $tasks[0]["deadline_date"] ?>"
                 class="bg-gray-700 rounded-lg">
 
