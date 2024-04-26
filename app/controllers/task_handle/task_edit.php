@@ -23,6 +23,7 @@ $params = [$_GET["id"]];
 $tasks = $db->execute($query_string, $params)->fetchAll();
 
 
+
 $errors = [];
 $update_string = "UPDATE tasks SET deadline_date=?, title=?, DESCRIPTION=?, done=? WHERE id = ?";
 $update_params = [];

@@ -118,7 +118,7 @@
 
                     <div>
                         <button type="submit"
-                            class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">
+                            class="bg-purple-700 cursor-pointer text-center w-full font-extrabold text-white px-4 py-3 rounded-xl hover:bg-purple-400 transition-all text-sm">
                             Sign up
                         </button>
                     </div>
