@@ -4,9 +4,9 @@ let cardsElements = [];
 let fetching = false;
 
 /**
- * Marks the task with the given index done or due. 
- * 
- * @param {BigInt} index 
+ * Marks the task with the given index done or due.
+ *
+ * @param {BigInt} index
  */
 async function taskDone(index) {
   const buttonElement = document.getElementById(`done-${index}`);
@@ -33,7 +33,6 @@ async function taskDone(index) {
     });
   }
 }
-
 
 /**
  * Removes a task from the list.
@@ -88,10 +87,10 @@ function editTask(id) {
  * @returns {string} The formatted button text and style.
  */
 function formatDoneButton(donedata) {
-  const done = donedata? true : false;
-  const text = done? "Done" : "Due";
+  const done = donedata ? true : false;
+  const text = done ? "Done" : "Due";
   const btn = done
-   ? "bg-purple-700 cursor-pointer text-center w-full h-fit font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all "
+    ? "bg-purple-700 cursor-pointer text-center w-full h-fit font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all "
     : "bg-gray-700   cursor-pointer text-center w-full h-fit font-extrabold p-2 px-6 rounded-xl hover:bg-sky-500 transition-all ";
   return `class="${btn}">${text}`;
 }
@@ -116,24 +115,34 @@ function formatDeadlineDate(deadlineDate) {
 
   const diffInMs = deadline - currentDate;
   const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-  const diffInHours = Math.floor((diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const diffInHours = Math.floor(
+    (diffInMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
   const diffInMinutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
   const diffInSeconds = Math.floor((diffInMs % (1000 * 60)) / 1000);
 
   let color = diffInMs <= 0 ? "red" : "white";
   console.log(diffInDays, diffInHours);
   let formattedString;
-  if (diffInDays === 0 && diffInHours >= 0){
-    formattedString = `Today at ${deadline.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}`;
+  if (diffInDays === 0 && diffInHours >= 0) {
+    formattedString = `Today at ${deadline.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
     color = "orange";
-  }
-  else if (diffInDays === 1 && diffInHours >= 0) {
-    formattedString = `Tomorrow at ${deadline.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}`;
+  } else if (diffInDays === 1 && diffInHours >= 0) {
+    formattedString = `Tomorrow at ${deadline.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
     color = "#ffff00";
   } else if (diffInDays >= 0 && diffInDays <= 7) {
-    const dayOfWeek = deadline.toLocaleDateString([], { weekday: 'long' }); // Monday, Tuesday, etc.
-    formattedString = `${dayOfWeek} at ${deadline.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}`;
-  }else {
+    const dayOfWeek = deadline.toLocaleDateString([], { weekday: "long" }); // Monday, Tuesday, etc.
+    formattedString = `${dayOfWeek} at ${deadline.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
+  } else {
     formattedString = deadline.toLocaleDateString();
   }
 
@@ -211,7 +220,7 @@ function createCard(card, index) {
     
     
       </div>`;
-  cardPush.innerHTML += `<div id="edit-${index}" onclick="editTask(${index})" class="absolute cursor-pointer flex justify-center content-center align-center bg-gray-700 font-extrabold m-3 rounded-xl hover:bg-blue-500 transition-all top-0 right-6 h-4 w-4 group">
+  cardPush.innerHTML += `<div id="edit-${index}" onclick="editTask(${card.id})" class="absolute cursor-pointer flex justify-center content-center align-center bg-gray-700 font-extrabold m-3 rounded-xl hover:bg-blue-500 transition-all top-0 right-6 h-4 w-4 group">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="relative top-0.5 w-3 h-3">
       <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
     </svg>

@@ -10,18 +10,17 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 
-$config = require "config.php";
-require "Database.php";
+$config = require "public/config.php";
+require "public/Database.php";
 
 $db = new Database($config["config"]);
-$page_title = "Tasks";
+$page_title = "Edit task";
 
 $query_string = "SELECT * FROM tasks WHERE id=?";
 $params = [$_GET["id"]];
 
 
 $tasks = $db->execute($query_string, $params)->fetchAll();
-
 
 
 $errors = [];
