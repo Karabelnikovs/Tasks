@@ -96,24 +96,10 @@ async function removeTask(index) {
   }
 }
 
-async function editTask(index) {
-  const buttonElement = document.getElementById(`delete-${index}`);
-  let form = new FormData();
-  if (id == index && !fetching && buttonElement) {
-    fetching = !fetching;
-    buttonElement.innerHTML = "";
-    buttonElement.classList.remove("hover:bg-red-500");
-    buttonElement.innerHTML = `<div class="absolute cursor-default flex justify-center content-center bg-gray-700 font-extrabold rounded-xl top-0 right-0 inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
-
-    id = index;
-    form.append("delete", id);
-    await fetch("delete", {
-      method: "POST",
-      body: form,
-    }).then(() => {
-      id > 0 ? (id -= 1) : id;
-      getCards();
-    });
+function editTask(index) {
+  const buttonElement = document.getElementById(`edit-${index}`);
+  if (id == index && buttonElement) {
+    window.location.href = `/edit?id=${id}`;
   }
 }
 
@@ -154,9 +140,7 @@ function clearCards() {
 function fixPHPDone(donedata) {
   return donedata ? "done" : "notdone";
 }
-function editTask(id) {
-  window.location.href = `/edit?id=${id}`;
-}
+
 
 /**
  * Returns the formatted button text and style based on whether the task is done or not.
@@ -300,7 +284,7 @@ function createCard(card, index) {
     
     
       </div>`;
-  cardPush.innerHTML += `<div id="edit-${index}" onclick="editTask(${card.id})" class="absolute cursor-pointer flex justify-center content-center align-center bg-gray-700 font-extrabold m-3 rounded-xl hover:bg-blue-500 transition-all top-0 right-6 h-5 w-5 p-0.5 group">
+  cardPush.innerHTML += `<div id="edit-${index}" onclick="editTask(${index})" class="absolute cursor-pointer flex justify-center content-center align-center bg-gray-700 font-extrabold m-3 rounded-xl hover:bg-blue-500 transition-all top-0 right-6 h-5 w-5 p-0.5 group">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="relative top-0.5 w-3 h-3">
       <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
     </svg>

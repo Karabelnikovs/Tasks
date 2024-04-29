@@ -16,16 +16,19 @@ require "public/Database.php";
 $db = new Database($config["config"]);
 $page_title = "Edit task";
 
-$query_string = "SELECT * FROM tasks WHERE id=?";
-$params = [$_GET["id"]];
+$query_string = "SELECT
+tasks.*, users.username
+FROM tasks
+INNER JOIN users ON tasks.user_created = users.id WHERE users.id = ?";
+$user_id = $_SESSION['user_id'];
+$index =  $_GET["id"];
 
+$params = [$user_id];
 
 $tasks = $db->execute($query_string, $params)->fetchAll();
 
-
-
 $errors = [];
-$update_string = "UPDATE tasks SET deadline_date=?, title=?, DESCRIPTION=?, done=? WHERE id = ?";
+$update_string = "UPDATE tasks SET deadline_date=?, title=?, DESCRIPTION=? WHERE id = ?";
 $update_params = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -48,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST["deadline_date"],
             $name,
             $description,
-            $_GET["id"]
+            $tasks[$index]["id"]
         ];
         $updated = $db->execute($update_string, $update_params)->fetchAll();
         header('Location: /');
