@@ -2,7 +2,43 @@ const container = document.getElementById("container");
 let id = 0;
 let cardsElements = [];
 let fetching = false;
+const search = document.getElementById("search")
 
+
+
+/**
+ * Searches for tasks based on the given search query.
+ *
+ * @param {string} searching - The search query.
+ */
+function searchTask(searching) {
+  if (cardsElements.length > 0) {
+    // Filter the cards title based on the search query
+    let filteredCardsTitle = cardsElements.filter((card) => {
+      return card.title.toLowerCase().includes(searching.toLowerCase());
+    });
+    
+    // Filter the cards description based on the search query
+    let filteredCardsDescription = cardsElements.filter((card) => {
+      return card.description.toLowerCase().includes(searching.toLowerCase());
+    });
+    // Connect both of arrays into one
+    let filteredCards = filteredCardsTitle.concat(filteredCardsDescription);
+    if (filteredCardsTitle.length > 0 || filteredCardsDescription.length > 0) {
+      // Update the cards with the filtered results
+      id = filteredCards[0].id;
+      updateCards(filteredCards);
+    } else {
+      // Update the cards with the original results if no matches are found
+      updateCards(cardsElements);
+    }
+  }
+}
+
+search.addEventListener("keyup", (event)=>{
+  searchTask(event.target.value)
+  console.log(event.target.value)
+})
 /**
  * Marks the task with the given index done or due.
  *
@@ -51,6 +87,48 @@ async function removeTask(index) {
     id = index;
     form.append("delete", id);
     await fetch("delete", {
+      method: "POST",
+      body: form,
+    }).then(() => {
+      id > 0 ? (id -= 1) : id;
+      getCards();
+    });
+  }
+}
+
+async function editTask(index) {
+  const buttonElement = document.getElementById(`delete-${index}`);
+  let form = new FormData();
+  if (id == index && !fetching && buttonElement) {
+    fetching = !fetching;
+    buttonElement.innerHTML = "";
+    buttonElement.classList.remove("hover:bg-red-500");
+    buttonElement.innerHTML = `<div class="absolute cursor-default flex justify-center content-center bg-gray-700 font-extrabold rounded-xl top-0 right-0 inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
+
+    id = index;
+    form.append("delete", id);
+    await fetch("delete", {
+      method: "POST",
+      body: form,
+    }).then(() => {
+      id > 0 ? (id -= 1) : id;
+      getCards();
+    });
+  }
+}
+
+async function createTask(index) {
+  const buttonElement = document.getElementById(`create-${index}`);
+  let form = new FormData();
+  if (id == index && !fetching && buttonElement) {
+    fetching = !fetching;
+    buttonElement.innerHTML = "";
+    buttonElement.classList.remove("hover:bg-red-500");
+    buttonElement.innerHTML = `<div class="absolute cursor-default flex justify-center content-center bg-gray-700 font-extrabold rounded-xl top-0 right-0 inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
+
+    id = index;
+    form.append("create", id);
+    await fetch("create", {
       method: "POST",
       body: form,
     }).then(() => {
@@ -122,7 +200,6 @@ function formatDeadlineDate(deadlineDate) {
   const diffInSeconds = Math.floor((diffInMs % (1000 * 60)) / 1000);
 
   let color = diffInMs <= 0 ? "red" : "white";
-  console.log(diffInDays, diffInHours);
   let formattedString;
   if (diffInDays === 0 && diffInHours >= 0) {
     formattedString = `Today at ${deadline.toLocaleTimeString([], {
@@ -155,7 +232,7 @@ function formatDeadlineDate(deadlineDate) {
  * @returns {string} The user ID from the cookie.
  */
 function getUserIdFromCookie() {
-  const cookieName = "user_id"; // Replace with your actual cookie name if different
+  const cookieName = "user_id";
   let userId = "";
 
   if (document.cookie) {
@@ -183,6 +260,9 @@ async function fetchData() {
   const data = await response.json(); // Parse response as JSON
   return data;
 }
+
+
+
 /**
  * Creates a task card element.
  *
@@ -252,19 +332,23 @@ async function getCards() {
       let cardPushArr = {
         card: cardPush,
         title: card.title,
+        description: card.DESCRIPTION,
+        id: index
       };
       cardsElements.push(cardPushArr);
     });
-    updateCards();
+    updateCards(cardsElements);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
 
+
+
 /**
  * Prompts user to add a new card.
  */
-function prompEmpty() {
+function promptEmpty() {
   container.innerHTML = "";
   const element = document.createElement("div");
   element.classList = `card selected         w-60 
@@ -278,18 +362,22 @@ function prompEmpty() {
 /**
  * Updates the cards displayed in the container.
  */
-function updateCards() {
+function updateCards(cardsArray) {
   fetching = false;
-  const length = cardsElements.length;
+  const length = cardsArray.length;
   if (length === 0) {
-    prompEmpty();
+    promptEmpty();
   } else {
     container.innerHTML = "";
-    cardsElements.forEach((element) => {
+    cardsArray.forEach((element) => {
       container.append(element.card);
     });
     scrollToCard(id);
   }
+}
+
+function promptNew(){
+  window.location.href = "create"
 }
 /**
  * Scrolls the page to the specified card element.

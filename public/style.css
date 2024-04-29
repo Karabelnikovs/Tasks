@@ -9,16 +9,11 @@
   font-size: xx-small;
   scroll-behavior: smooth;
 }
-.hide-card{
-    position: absolute;
-    height: 400px;
-    z-index: 999;
-    width: 27vw;
-    backdrop-filter: blur(10px);
-}
+
 .card {
     user-select: none;
     flex-shrink: 0;
+    transform: scale(0.8);
     filter: blur(2px);
     margin: 24px;
   }
@@ -27,14 +22,14 @@
     box-shadow: #a78bfa;
     box-shadow: 0 10px 15px -3px #a78bfa, 0 4px 6px -4px #a78bfa;
     z-index: 99;
-    transform: scale(1.2); /* Increase size for selected card */
+    transform: scale(1.4); /* Increase size for selected card */
     filter: blur(0); /* Remove blur from selected card */
   }
 
   .card:first-child {
-    margin-left: calc(50vw - (150px / 2)); /* Adjust based on card width */
+    margin-left: calc(50vw - (120px / 2)); /* Adjust based on card width */
   }
 
   .card:last-child {
-    margin-right: calc(50vw - (150px / 2));
+    margin-right: calc(50vw - (120px / 2));
   }

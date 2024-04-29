@@ -10,8 +10,8 @@
     </path>
 </svg>
 
-<form class="form absolute  left-10">
-    <div class="input-group top-7">
+<form class="form absolute top-7 left-10">
+    <div class="input-group ">
         <button class="absolute left-2 -translate-y-1/2 top-1/2 p-1">
             <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
                 aria-labelledby="search" class="w-5 h-5 text-purple-400 font-bold">
@@ -20,10 +20,16 @@
                 </path>
             </svg>
         </button>
-        <input name="title" type="text" value='<?= ($_GET["title"] ?? '') ?>' class="input rounded-full px-8
-                transition-all duration-300
-                w-px
+        <input name="title" id="search" type="text" value='<?= ($_GET["title"] ?? '') ?>' class="input rounded-full px-8
+                transition-all
+                w-0
                 py-2 border-2
+                max-w-40
+                sm:max-w-48
+                md:max-w-52
+                lg:max-w-60
+                xl:max-w-64
+                2xl:max-w-72
                 bg-gray-700
                 focus:w-full
                 border-transparent
@@ -67,15 +73,15 @@
             style="margin-left: 49vw;">
         </div>
     </div>
-    <a href="create"
-        class="w-fit absolute flex flex-nowrap transition-all text-white hover:no-underline duration-300 rounded-full bottom-24  border-2 border-purple-700 hover:bg-purple-700">
+    <div
+        class="w-fit absolute flex flex-nowrap pointer transition-all text-white hover:no-underline duration-300 rounded-full bottom-24  border-2 border-purple-700 hover:bg-purple-700" onclick="promptNew()">
         <svg class="hover:stroke-black stroke-white transition-all duration-300 relative stroke-2  w-10 h-10"
             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="relative top-0 right-0 w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
-    </a>
+    </div>
 
 </div>
 </body>
