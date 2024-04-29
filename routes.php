@@ -8,6 +8,7 @@ return [
   "/delete" => "app/controllers/task_handle/tasks_delete.php",
   "/check" => "app/controllers/task_handle/task_check.php",
   "/edit" => "app/controllers/task_handle/task_edit.php",
+  "/calendar" => "app/controllers/task_handle/calendar.php",
 
   "/signup-succes" => "app/controllers/user_handle/signup_succes.php",
   "/logout" => "app/controllers/user_handle/logout.php",
