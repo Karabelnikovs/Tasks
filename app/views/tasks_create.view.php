@@ -8,6 +8,8 @@
 <div
     class="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden">
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+
 <a href="/"
     class="group transition-all w-22 flex flex-nowrap text-white hover:no-underline duration-300 rounded-full px-4 py-1 absolute top-7 left-10 border-2 border-red-500 hover:bg-red-500">Back
     <svg class="stroke-white stroke-2 transition-all duration-300 relative -right-1 top-1 w-5 h-5 " viewBox="0 0 24 24"
@@ -29,6 +31,7 @@
             <input name="deadline_date" type="datetime-local"
                 value="<?= isset($_POST["deadline_date"]) ? $_POST["deadline_date"] : "" ?>"
                 class="bg-gray-700 rounded-xl text-gray-400 p-1 px-2 outline outline-purple-400 outline-2 focus:outline-offset-2">
+
 
             <?php
             if (!empty($errors)) {

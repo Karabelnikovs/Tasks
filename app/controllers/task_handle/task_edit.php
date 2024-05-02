@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-
+require "public/signup_validator.php";
 $config = require "public/config.php";
 require "public/Database.php";
 
@@ -21,7 +21,7 @@ tasks.*, users.username
 FROM tasks
 INNER JOIN users ON tasks.user_created = users.id WHERE users.id = ?";
 $user_id = $_SESSION['user_id'];
-$index =  $_GET["id"];
+$index = $_GET["id"];
 
 $params = [$user_id];
 
@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($errors)) {
         $update_params = [
             $_POST["deadline_date"],
-            $name,
-            $description,
+            $_POST['title'],
+            $_POST["description"],
             $tasks[$index]["id"]
         ];
         $updated = $db->execute($update_string, $update_params)->fetchAll();

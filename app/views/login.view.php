@@ -26,10 +26,10 @@
                     <div class="space-y-6">
                         <div class="">
                             <input type="email" id="email" name="email" value="<?= $_POST['email'] ?? "" ?>"
-                                class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400 font-bold"
+                                class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400 "
                                 placeholder="Email">
                             <span
-                                class="absolute hidden z-20 w-48 rounded-lg bg-gray-700 px-2 py-1 text-center text-sm text-white font-bold">Type
+                                class="absolute hidden z-20 w-48 rounded-lg bg-gray-700 px-2 py-1 text-center text-sm text-white ">Type
                                 email you used in signup</span>
                         </div>
 
@@ -37,7 +37,7 @@
                         <div class="relative" x-data="{ show: true }">
                             <input id="password" name="password" value="<?= $_POST['password'] ?? "" ?>"
                                 placeholder="Password" :type="show ? 'password' : 'text'"
-                                class="text-sm text-black-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400 font-bold">
+                                class="text-sm text-black-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400 ">
                             <span
                                 class="absolute hidden z-20 w-48 rounded-lg bg-gray-700 px-2 py-1 text-center text-sm text-white">Type
                                 password you used in signup</span>

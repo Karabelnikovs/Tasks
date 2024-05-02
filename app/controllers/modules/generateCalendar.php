@@ -6,7 +6,8 @@ function generateCalendar($month, $year, $tasks, $user_id)
     $daysInMonth = date('d', mktime(0, 0, 0, $month + 1, 0, $year));
     $dayOfWeek = date('w', $firstDay);
 
-    $calendar = "<table class='table'>";
+    $calendar = "<div class='w-screen h-screen flex items-center justify-center'>";
+    $calendar .= "<table class='w-9/12'border-spacing-1'>";
     $calendar .= "<tr class='border-b border-gray-200 calendar-head'>";
     $calendar .= "<th class='text-left px-4 py-2 font-medium text-gray-700 uppercase tracking-wider'>" . date('F', $firstDay) . " " . $year . "</th></tr>";
 
@@ -31,10 +32,10 @@ function generateCalendar($month, $year, $tasks, $user_id)
             break;
         }
 
-        $calendar .= "<td class='z-20 bg-neutral-800 text-white text-ne utral-300 p-4 gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 hover:z-44 transition-shadow"
+        $calendar .= "<td class='w-20 h-15"
             . (date('Y-m-d') === $dateString ? 'calendar-day-today' : '') . "'>";
 
-        // var_dump($tasks);
+        $calendar .= "<div class='rounded-xl  h-20 w-40 flex flex-row items-center bg-neutral-800 text-white text-ne utral-300 py-4 pl-3 m-1 gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 hover:z-44 transition-shadow'>" . $dayCounter;
         $deadlines = [];
         foreach ($tasks as $key => $task) {
 
@@ -42,18 +43,18 @@ function generateCalendar($month, $year, $tasks, $user_id)
                 if ($user_id == $task["user_created"]) {
                     $deadlines[$key]['title'] = $task['title'];
                     $deadlines[$key]['time'] = substr($task['deadline_date'], -8);
+                    $deadlines[$key]['id'] = $task['id'];
                 }
             }
         }
-        $calendar .= $dayCounter;
         if (!empty($deadlines)) {
             $calendar .= "<div class='deadline-list text-white'>";
             foreach ($deadlines as $deadline) {
-                $calendar .= "<p>" . $deadline['title'] . " - " . $deadline['time'] . "</p>";
+                $calendar .= "<a href='show?id=" . $deadline['id'] . "'>" . $deadline['title'] . " - " . $deadline['time'] . "</a>";
             }
             $calendar .= "</div>";
         }
-
+        $calendar .= "</div>";
         $calendar .= "</td>";
 
         if (($i + 1) % 7 === 0) {
@@ -70,6 +71,6 @@ function generateCalendar($month, $year, $tasks, $user_id)
     }
 
     $calendar .= "</table>";
-
+    $calendar .= "</div>";
     return $calendar;
 }

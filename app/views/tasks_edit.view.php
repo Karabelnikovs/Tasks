@@ -12,11 +12,11 @@
 <div class="w-100 h-screen flex select-none justify-center items-center">
     <div
         class="w-80 h-50  absolute z-20 bg-neutral-800 rounded-3xl text-ne utral-300 p-4 gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow">
-        <form class="w-100 h-100 flex flex-col items-center justify-center gap-3" method="post" action="create">
+        <form class="w-100 h-100 flex flex-col items-center justify-center gap-3" method="post">
             <input name="title" type="text" placeholder="Title" value="<?= $tasks[$index]["title"] ?>"
-                class="bg-gray-700 rounded-lg">
+                class="bg-gray-700 rounded-lg text-gray-400 p-1 px-2 outline outline-purple-400 outline-2 focus:outline-offset-2">
             <textarea name="description" placeholder="Description"
-                class="resize-none bg-gray-700 rounded-lg w-65 h-50"><?= htmlspecialchars($tasks[$index]["DESCRIPTION"]) ?></textarea>
+                class="resize-none bg-gray-700 rounded-lg w-65 h-50 text-gray-400 p-1 px-2 outline outline-purple-400 outline-2 focus:outline-offset-2"><?= htmlspecialchars($tasks[$index]["DESCRIPTION"]) ?></textarea>
             <input name="deadline_date" type="datetime-local" value="<?= $tasks[$index]["deadline_date"] ?>"
                 class="bg-gray-700 rounded-xl text-gray-400 p-1 px-2 outline outline-purple-400 outline-2 focus:outline-offset-2">
 

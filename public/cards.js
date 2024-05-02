@@ -2,9 +2,7 @@ const container = document.getElementById("container");
 let id = 0;
 let cardsElements = [];
 let fetching = false;
-const search = document.getElementById("search")
-
-
+const search = document.getElementById("search");
 
 /**
  * Searches for tasks based on the given search query.
@@ -17,7 +15,7 @@ function searchTask(searching) {
     let filteredCardsTitle = cardsElements.filter((card) => {
       return card.title.toLowerCase().includes(searching.toLowerCase());
     });
-    
+
     // Filter the cards description based on the search query
     let filteredCardsDescription = cardsElements.filter((card) => {
       return card.description.toLowerCase().includes(searching.toLowerCase());
@@ -35,10 +33,10 @@ function searchTask(searching) {
   }
 }
 
-search.addEventListener("keyup", (event)=>{
-  searchTask(event.target.value)
-  console.log(event.target.value)
-})
+search.addEventListener("keyup", (event) => {
+  searchTask(event.target.value);
+  console.log(event.target.value);
+});
 /**
  * Marks the task with the given index done or due.
  *
@@ -140,7 +138,6 @@ function clearCards() {
 function fixPHPDone(donedata) {
   return donedata ? "done" : "notdone";
 }
-
 
 /**
  * Returns the formatted button text and style based on whether the task is done or not.
@@ -245,8 +242,6 @@ async function fetchData() {
   return data;
 }
 
-
-
 /**
  * Creates a task card element.
  *
@@ -263,6 +258,7 @@ function createCard(card, index) {
         h-80 
         z-10 
         p-4 
+        mb-10
 
         flex 
         shrink-0 
@@ -317,7 +313,7 @@ async function getCards() {
         card: cardPush,
         title: card.title,
         description: card.DESCRIPTION,
-        id: index
+        id: index,
       };
       cardsElements.push(cardPushArr);
     });
@@ -326,8 +322,6 @@ async function getCards() {
     console.error("Error fetching data:", error);
   }
 }
-
-
 
 /**
  * Prompts user to add a new card.
@@ -360,8 +354,8 @@ function updateCards(cardsArray) {
   }
 }
 
-function promptNew(){
-  window.location.href = "create"
+function promptNew() {
+  window.location.href = "create";
 }
 /**
  * Scrolls the page to the specified card element.
