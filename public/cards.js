@@ -74,23 +74,25 @@ async function taskDone(index) {
  * @param {number} index - The index of the task.
  */
 async function removeTask(index) {
-  const buttonElement = document.getElementById(`delete-${index}`);
-  let form = new FormData();
-  if (id == index && !fetching && buttonElement) {
-    fetching = !fetching;
-    buttonElement.innerHTML = "";
-    buttonElement.classList.remove("hover:bg-red-500");
-    buttonElement.innerHTML = `<div class="absolute cursor-default flex justify-center content-center bg-gray-700 font-extrabold rounded-xl top-0 right-0 inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
-
-    id = index;
-    form.append("delete", id);
-    await fetch("delete", {
-      method: "POST",
-      body: form,
-    }).then(() => {
-      id > 0 ? (id -= 1) : id;
-      getCards();
-    });
+  const confirmDelete = confirm("Are you sure you want to delete this task?");
+  if (confirmDelete) {
+    const buttonElement = document.getElementById(`delete-${index}`);
+    let form = new FormData();
+    if (id == index && !fetching && buttonElement) {
+      fetching = !fetching;
+      buttonElement.innerHTML = "";
+      buttonElement.classList.remove("hover:bg-red-500");
+      buttonElement.innerHTML = `<div class="absolute cursor-default flex justify-center content-center bg-gray-700 font-extrabold rounded-xl top-0 right-0 inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"></div>`;
+      id = index;
+      form.append("delete", id);
+      await fetch("delete", {
+        method: "POST",
+        body: form,
+      }).then(() => {
+        id > 0 ? (id -= 1) : id;
+        getCards();
+      });
+    }
   }
 }
 
