@@ -21,7 +21,7 @@
                     </path>
                 </svg>
             </button>
-            <input name="title" id="search" type="text" value='<?= ($_GET["title"] ?? '') ?>' class="input rounded-full px-8
+            <input name="title" id="search" type="text" class="input rounded-full px-8
                 transition-all
                 w-0
                 py-2 border-2
