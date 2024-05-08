@@ -33,7 +33,7 @@ function generateCalendar($month, $year, $tasks, $user_id)
         }
 
         $calendar .= "<td class='w-20 h-15"
-            . (date('Y-m-d') === $dateString ? 'calendar-day-today' : '') . "'>";
+            . (date('Y-m-d') === $dateString ? ' rounded-xl outline outline-purple-400 outline-3 -outline-offset-4 ' : '') . "'>";
 
         $calendar .= "<div class='rounded-xl  h-20 w-40 flex flex-row items-center bg-neutral-800 text-white text-ne utral-300 py-4 pl-3 m-1 gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 hover:z-44 transition-shadow'>" . $dayCounter;
         $deadlines = [];
