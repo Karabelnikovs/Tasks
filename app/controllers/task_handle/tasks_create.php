@@ -20,8 +20,8 @@ $params = [];
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (Validator::string($_POST['title'], min: 5, max: 50)) {
-        $errors["title"] = "Title must be a string between 5 and 50 characters.";
+    if (Validator::string($_POST['title'], min: 3, max: 10)) {
+        $errors["title"] = "Title must be a string between 3 and 10 characters.";
     }
     if (Validator::string($_POST["description"], min: 10, max: 500)) {
         $errors["description"] = "Description must be a string between 10 and 500 characters.";

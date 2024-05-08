@@ -25,8 +25,7 @@
             <input name="title" type="text" placeholder="Title"
                 value="<?= isset($_POST["title"]) ? $_POST["title"] : "" ?>"
                 class="bg-gray-700 rounded-xl text-gray-400 p-1 px-2 outline outline-purple-400 outline-2 focus:outline-offset-2">
-            <textarea name="description" placeholder="Description"
-                value="<?= isset($_POST["description"]) ? $_POST["description"] : "" ?>"
+            <textarea name="description" id="description" placeholder="Description"
                 class="resize-none bg-gray-700 rounded-xl w-65 h-50 text-gray-400 p-1 px-2 outline outline-purple-400 outline-2 focus:outline-offset-2"></textarea>
             <input name="deadline_date" type="datetime-local"
                 value="<?= isset($_POST["deadline_date"]) ? $_POST["deadline_date"] : "" ?>"
@@ -49,3 +48,6 @@
     </div>
 </div>
 </div>
+<script>
+    document.getElementById("description").value = "<?= isset($_POST["description"]) ? $_POST["description"] : "" ?>";
+</script>
