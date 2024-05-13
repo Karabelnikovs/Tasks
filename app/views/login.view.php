@@ -9,8 +9,7 @@
         <div class="self-start hidden lg:flex flex-col  text-gray-300">
 
             <h1 class="my-3 font-semibold text-4xl">Welcome back</h1>
-            <p class="pr-3 text-sm opacity-75">Jomajo te mes uzrakstisim baigi zajebis tekstu ta lai ienak un uzreiz
-                saprot ka nihuja sev laba saite</p>
+            <p class="pr-3 text-sm opacity-75">Here you can write down your tasks!</p>
         </div>
     </div>
     <div class="flex justify-center self-center  z-10">
