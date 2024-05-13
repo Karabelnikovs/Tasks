@@ -335,7 +335,7 @@ function promptEmpty() {
   element.classList = `card selected         w-60 
     h-80 
     z-10 
-   flex flex-col z-20 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col justify-center gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow`;
+    z-20 bg-neutral-800 rounded-3xl text-neutral-300 p-4 flex flex-col justify-center items-center gap-3 hover:bg-gray-1000 hover:shadow-lg hover:shadow-purple-400 transition-shadow`;
   element.innerHTML = `<a href="create" class=" w-70 h-90 transition-all text-white text-xl hover:no-underline duration-300 text-center rounded-full px-2 py-1 border-2 border-purple-700 hover:bg-purple-700">Add task</a>`;
   container.append(element);
 }

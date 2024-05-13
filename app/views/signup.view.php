@@ -10,8 +10,7 @@
 
             <h1 class="my-3 font-semibold text-4xl">Welcome</h1>
             <p class="pr-3 text-sm opacity-75">
-                Jomajo te mes uzrakstisim baigi zajebis tekstu ta lai ienak un uzreiz
-                saprot ka nihuja sev laba saite</p>
+                Here you can write down your tasks!</p>
         </div>
     </div>
 
