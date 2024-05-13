@@ -1,6 +1,4 @@
 <?php
-// TODO VERY NOT COOL METHOD OF DOING THIS PLS SOMEONE WORK ON SECURITY!!!!!!!!
-
 $config = require "public/config.php";
 require "public/Database.php";
 

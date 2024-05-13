@@ -315,7 +315,7 @@ async function getCards() {
         card: cardPush,
         title: card.title,
         description: card.DESCRIPTION,
-        id: index,
+        id: index
       };
       cardsElements.push(cardPushArr);
     });
