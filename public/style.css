@@ -8,6 +8,8 @@
   overflow: hidden;
   font-size: xx-small;
   scroll-behavior: smooth;
+  
+  scroll-snap-type: mandatory;
 }
 
 .card {

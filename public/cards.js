@@ -1,8 +1,8 @@
 const container = document.getElementById("container");
+const search = document.getElementById("search");
 let id = 0;
 let cardsElements = [];
 let fetching = false;
-const search = document.getElementById("search");
 
 /**
  * Searches for tasks based on the given search query.
@@ -32,6 +32,7 @@ function searchTask(searching) {
     }
   }
 }
+
 
 search.addEventListener("keyup", (event) => {
   searchTask(event.target.value);
@@ -392,20 +393,20 @@ function scrollToCard(cardId) {
  * Switches index of the current task and updates the cards displayed in the container.
  */
 function nextCard() {
-  id++;
-  if (id === cardsElements.length) {
-    id = 0;
+  if (id < cardsElements.length) {
+    id++;
   }
+  scrollToCard(id);
 }
 
 /**
  * Switches index of the current task and updates the cards displayed in the container.
  */
 function prevCard() {
-  id--;
-  if (id < 0) {
-    id = cardsElements.length - 1;
+  if (id > 0) {
+    id--;
   }
+  scrollToCard(id);
 }
 
 getCards();

@@ -84,7 +84,13 @@
             style="margin-left: 49vw;">
         </div>
     </div>
-    <div class="absolute w-fit flex flex-nowrap pointer transition-all text-white hover:no-underline duration-300 rounded-full bottom-16  border-2 border-purple-700 hover:bg-purple-700"
+    <div class="absolute flex align-center justify-center h-fit w-screen bottom-16 gap-5">
+    <div 
+    class=" w-fit h-fit flex flex-nowrap pointer transition-all text-white p-2 hover:no-underline duration-300 rounded-full bottom-16 sm:hidden border-2 border-purple-700 hover:bg-purple-700"
+    onclick="prevCard()">
+    &larr;
+    </div>
+    <div class=" w-fit flex font-bold flex-nowrap pointer transition-all text-white hover:no-underline duration-300 rounded-full bottom-16  border-2  border-purple-700 hover:bg-purple-700"
         onclick="promptNew()">
         <svg class="hover:stroke-black stroke-white transition-all duration-300 relative stroke-2  w-10 h-10"
             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -92,6 +98,13 @@
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
+    </div>
+    <div 
+    class="w-fit h-fit font-bold flex flex-nowrap pointer transition-all text-white p-2 hover:no-underline duration-300 rounded-full bottom-16  sm:hidden border-2 border-purple-700 hover:bg-purple-700"
+    onclick="nextCard()">
+        &rarr;
+    </div>
+
     </div>
 
 </div>
